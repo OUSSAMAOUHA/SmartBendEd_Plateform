@@ -1,0 +1,150 @@
+<app-page-header
+  [link]="'Non Disponibilités'"
+  [prev]="'Prod'"
+  [current]="'Constraint teacher'"
+></app-page-header>
+<!--<form>
+  <div class="student-group-form">
+    <div class="row">
+      <div class="col-lg-3 col-md-6">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search by day.."
+          />
+        </div>
+      </div>
+
+      <div class="col-lg-2">
+        <div class="search-student-btn">
+          <button type="button" class="btn btn-primary">Search</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>-->
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card card-table">
+      <div class="card-body">
+        <div class="page-header">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="page-title">Your Disponibility :</h3>
+            </div>
+          </div>
+        </div>
+        <table class="table table-striped">
+          <thead>
+          <th>Module</th>
+          <th>Major</th>
+          <th>class</th>
+          <th>semester</th>
+          <th>on remote hours</th>
+          <th>on site hours</th>
+          <th>edit</th>
+          </thead>
+          <tr *ngFor="let m of modules">
+            <td><h4 class="page-title">{{m.libelle}}</h4></td>
+            <td><h4 class="page-title">{{m.classe.filiere.libelle}}</h4></td>
+            <td><h4 class="page-title">{{m.classe.libelle}}</h4></td>
+            <td><h4 class="page-title">{{m.semestre}}</h4></td>
+            <td><h4 class="page-title">{{m.volumeHoraireOnRemote}}</h4></td>
+            <td><h4 class="page-title">{{m.volumeHoraireOnsite}}</h4></td>
+            <td>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getSelectedApp(m)">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+          </tr>
+        </table>
+
+        <!--<table
+          class="table border-0 star-student table-hover table-center mb-0 datatable table-striped"
+        >
+          <thead class="student-thread">
+            <tr>
+              <th>
+                <div class="form-check check-tables">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="something"
+                  />
+                </div>
+              </th>
+              <th>ID</th>
+              <th>Jour</th>
+              <th>Enseignant</th>
+              <th>Periode</th>
+
+              <th class="text-end">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let nondispo of nonDispos">
+              <td>
+                <div class="form-check check-tables">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="something"
+                  />
+                </div>
+              </td>
+              <td>{{ nondispo.id }}</td>
+              <td>{{ nondispo.jour }}</td>
+              <td>{{ nondispo.enseignant.nom }}</td>
+              <td>{{ nondispo.periode }}</td>
+              <td class="text-end">
+                <div class="actions">
+                  <a class="btn btn-sm bg-success-light me-2">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                  <a class="btn btn-sm bg-danger-light">
+                    <i class="fas fa-trash"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>-->
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit your hours</h5>
+        <button type="button" #close class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close"></button>
+      </div>
+      <button class="btn btn-sm bg-danger-light" (click)="changeVolumes('increase')">+</button>
+      <button class="btn btn-sm bg-danger-light" (click)="changeVolumes('decrease')">-</button>
+      <form #form="ngForm" (ngSubmit)="update(module)">
+        <div class="modal-body">
+          <div class="col-md-12  form-group ">
+            <label class="col-md-12" for="">Horaire Onsite Hourly Volume</label>
+            <input type="text" name="volumeHoraireOnsite" [(ngModel)]="module.volumeHoraireOnsite" class="form-control"
+                   placeholder="nom" required readonly>
+          </div>
+
+          <div class="col-md-12  form-group ">
+            <label class="col-md-12" for="">OnRemote Hourly Volume</label>
+            <input type="text" name="volumeHoraireOnRemote" [(ngModel)]="module.volumeHoraireOnRemote" class="form-control"
+                   placeholder="nom" required readonly>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>

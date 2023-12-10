@@ -1,0 +1,170 @@
+<app-page-header
+  [link]="'classes'"
+  [prev]="'Grade'"
+  [current]="'Add Grade'"
+></app-page-header>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card comman-shadow">
+      <div class="card-body">
+        <form [formGroup]="newClassFormGroup" (ngSubmit)="handleAddClasse()">
+          <div class="row">
+            <div class="col-12">
+              <h5 class="form-title student-info">
+                Room Informations<span
+              ><a href="javascript:;"
+              ><i class="feather-more-vertical"></i></a
+              ></span>
+              </h5>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Label <span class="login-danger">*</span></label>
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="label ...."
+                  formControlName="libelle"
+                />
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Number of students <span class="login-danger">*</span></label>
+                <input
+                  class="form-control"
+                  type="number"
+                  placeholder="number of students...."
+                  formControlName="nbrEleves"
+                />
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Major<span class="login-danger">*</span></label>
+                <select class="form-control" formControlName="filiere">
+                  <option value="" disabled selected>Choose Major</option>
+                  <option *ngFor="let filiere of filieres" [value]="filiere.id">{{ filiere.libelle }}</option>
+                </select>
+
+              </div>
+            </div>
+            <div class="col-12 d-flex align-items-center justify-content-center">
+              <div class="student-submit">
+                <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Confirmer</button>
+              </div>
+            </div>
+          </div>
+          <!--  <div>
+                <hr class="mt-4" />
+                <div class="col-12 col-sm-12">
+                  <div class="form-group students-up-files">
+                    <label>
+                      Vous pouvez également charger une liste de classes (xlsx, csv, txt)
+                    </label>
+                    <div class="uplod">
+                      <label class="file-upload image-upbtn mb-0">
+                        Choisir un Fichier <input type="file" />
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>-->
+           </form>
+         </div>
+       </div>
+     </div>
+   </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">YOU CAN Add groups to the Groupe already create <b>GR1</b> to {{classe?.libelle}}</h5>
+        <button type="button" #close id = "close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card comman-shadow">
+            <div class="card-body">
+              <form #groupe="ngForm" (ngSubmit)="addGroupes()">
+                <div class="row">
+                  <div class="col-12">
+                    <h5 class="form-title student-info">
+                      Informations sur les groupes<span
+                    ><a href="javascript:;"
+                    ><i class="feather-more-vertical"></i></a
+                    ></span>
+                    </h5>
+                  </div>
+                  <div class="col-12">
+                  <div class="col-12 col-sm-4">
+                    <div class="form-group local-forms">
+                      <label>Libelle <span class="login-danger">*</span></label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        ngModel
+                        name="libelle"
+                      />
+                    </div>
+                    <div class="form-group pull-right">
+                      <button type="button"  class="btn btn-block btn-success" (click)="addGroup(groupe)">
+                        +
+                      </button>
+                    </div>
+                  </div>
+
+
+                  <div
+                    class="col-12 d-flex align-items-center justify-content-center"
+                  >
+                    <div class="row">
+                      <div class="col-md-12">
+
+                      </div>
+                    </div>
+                    <br><br>
+                    <div class="row">
+                      groups that will be created for the classe {{classe?.libelle}}<br><br>
+                      <div class="col-md-12">
+                        <table class="table table-bordered">
+                          <thead class="thead-default">
+                          <th class="text-center">group</th>
+                          <th class="text-center">classe</th>
+                          <th>X</th>
+                          <tbody>
+                        <tr *ngFor="let groupe of groupes">
+                          <td>{{groupe.libelle}}</td>
+                          <td>{{groupe.classe.libelle}}</td>
+                          <td>
+                            <input type="button" (click)="supprimerGroupe(groupe)"
+                                   class="btn btn-block btn-danger" value="X">
+                          </td>
+                        </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group pull-right">
+                          <button type="submit" class="btn  btn-success">
+                            Enregistrer
+                            <i [hidden]="true" class="fa fa-spinner fa-spin fa-2x fa-fw pull-right"></i>
+                            <span class="sr-only">Loading...</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </div></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

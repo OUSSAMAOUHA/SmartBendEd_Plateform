@@ -1,0 +1,150 @@
+<app-page-header
+  [link]="'etudiant'"
+  [prev]="'Students'"
+  [current]="'Home'"
+></app-page-header>
+
+<div class="student-group-form">
+    <!-- Search form -->
+    <div class="row">
+      <div class="col-lg-3 col-md-6">
+        <div class="form-group">
+          <label>checher les étudiant de la Classe : </label>
+          <select class="col-md-12 form-control" [(ngModel)]="selectedClasse" name="classe" required (ngModelChange)="searchEtud(selectedClasse)">
+            <option [ngValue]="null">Select a classe</option>
+            <option [ngValue]="classe" *ngFor="let classe of classes">
+              {{classe.libelle}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card card-table">
+      <div class="card-body">
+        <div class="page-header">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="page-title">Etudiants</h3>
+            </div>
+            <div class="col-auto text-end float-end ms-auto download-grp">
+              <a routerLink="/etudiant/add" class="btn btn-primary"
+              ><i class="fas fa-plus"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <table
+          class="table border-0 star-student table-hover table-center mb-0 datatable table-striped"
+        >
+          <thead class="student-thread">
+          <tr>
+            <th>CNE</th>
+            <th>First Name</th>
+            <th>Family Name</th>
+            <th>Email</th>
+            <th>Major</th>
+            <th>Grade</th>
+            <th>Grp</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let etud of etuds">
+            <td>{{ etud.cne }}</td>
+            <td>{{ etud.prenom }}</td>
+            <td>{{ etud.nom }}</td>
+            <td>{{ etud.email }}</td>
+            <td>{{ etud.classe.filiere.libelle }}</td>
+            <td>{{ etud.classe.libelle }}</td>
+            <td>{{etud.groupe.libelle}}</td>
+            <td class="text-end">
+              <div class="actions">
+                <button data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="handleCritereEtud(etud)"
+                  class="btn btn-sm bg-success-light me-2"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button
+                  (click)="handleEditeEtud(etud)"
+                  class="btn btn-sm bg-success-light me-2"
+                >
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button
+                  (click)="handleDeleteEtud(etud)"
+                  class="btn btn-sm bg-danger-light"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      <ul class="pagination justify-content-end mt-4">
+        <li class="page-item" [ngClass]="{ disabled: currentPage === 0 }">
+          <a class="page-link" tabindex="-1" (click)="goToPreviousSet()"
+          >Previous</a
+          >
+        </li>
+        <li
+                class="page-item"
+                *ngFor="let page of displayedPages"
+                [class.selected]="currentPage === page"
+        >
+          <a class="page-link" (click)="gotoPage(page)">{{ page + 1 }}</a>
+        </li>
+        <li
+                class="page-item"
+                [ngClass]="{ disabled: currentPage >= totalPages - 1 }"
+        >
+          <!-- Add the following code to disable the "Suivant" button when there are no more pages to show -->
+          <button
+                  class="page-link"
+                  [disabled]="currentPage >= totalPages - 1"
+                  (click)="goToNextSet()"
+          >
+            Next
+          </button>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+<!-- Modal -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Les criteres de l'etudiant</h5>
+        <button type="button" #close class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close"></button>
+      </div>
+        <div class="modal-body">
+          <div *ngIf="criteria != null">
+          <table class="table table-striped">
+            <tr>
+              <td><h3 class="page-title">equipment</h3> {{criteria?.equipment}}</td>
+              <td><h3 class="page-title">preference </h3> {{criteria?.preference}}</td>
+            </tr>
+            <tr>
+              <td><h3 class="page-title">infrastructure </h3> {{criteria?.infrastructure}}</td>
+              <td><h3 class="page-title">the learning space</h3> {{criteria?.learningSpace}}</td>
+            </tr>
+          </table>
+          </div>
+          <div *ngIf="!criteria">the student didn't specify his constraints !</div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+    </div>
+
+  </div>
+</div>

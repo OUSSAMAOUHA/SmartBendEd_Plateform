@@ -1,0 +1,63 @@
+<div class="main-wrapper login-body">
+  <div class="login-wrapper">
+    <div class="container">
+      <div class="loginbox">
+        <div class="login-left"  style="    background-color: #f7f7fa;">
+          <img class="img-fluid" src="/assets/img/login.png" alt="Logo"style="width: 600px; height: 500px;" />
+        </div>
+        <div class="login-right">
+          <div class="login-right-wrap">
+            <h2>Login</h2>
+
+            <form [formGroup]="formGroup" (ngSubmit)="login()">
+              <div class="form-group">
+                <label
+                  >Username<span class="login-danger">*</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="username"
+                />
+                <span class="profile-views"
+                  ><i class="fas fa-user-circle"></i
+                ></span>
+                <div
+                  *ngIf="username?.touched && username?.invalid"
+                  class="error-message text-danger"
+                >
+                  Username required
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Password <span class="login-danger">*</span></label>
+                <input
+                  type="password"
+                  class="form-control pass-input"
+                  formControlName="password"
+                />
+                <span class="profile-views feather-eye toggle-password"></span>
+                <div
+                  *ngIf="password?.touched && password?.invalid"
+                  class="error-message text-danger"
+                >
+                  Password required
+                </div>
+              </div>
+
+              <div class="form-group">
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-block"
+                  [disabled]="formGroup.invalid"
+                >
+                  Login
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

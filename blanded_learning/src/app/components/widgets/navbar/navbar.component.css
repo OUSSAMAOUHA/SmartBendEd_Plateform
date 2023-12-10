@@ -1,0 +1,17 @@
+.header {
+  background-color: transparent; /* Make the background transparent */
+  border: none; /* Remove any border */
+  box-shadow: none; /* Remove any box shadow */
+  /* Add any other necessary styles */
+}
+
+/* Add styles for other elements as needed */
+
+.top-nav-search,
+.user-menu {
+  /* You may need to adjust styles for other elements within the header */
+}
+.header {
+  padding-left: 320px; /* Add a left padding of 20px */
+  /* Add any other necessary styles */
+}

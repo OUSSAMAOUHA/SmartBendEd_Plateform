@@ -1,0 +1,157 @@
+<app-page-header
+  [link]="'etudiant'"
+  [prev]="'Students'"
+  [current]="'Add Student'"
+></app-page-header>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card comman-shadow">
+      <div class="card-body">
+        <form [formGroup]="newProfFormGroup" (ngSubmit)="handleAddEtudiant()">
+          <div class="row">
+            <div class="col-12">
+              <h5 class="form-title student-info">
+                Student Informations<span
+              ><a href="javascript:;"
+              ><i class="feather-more-vertical"></i></a
+              ></span>
+              </h5>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Fiest Name <span class="login-danger">*</span></label>
+                <input
+                  class="form-control"
+                  type="text"
+                  formControlName="prenom"
+                />
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Family Name <span class="login-danger">*</span></label>
+                <input class="form-control" type="text" formControlName="nom"/>
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms angle-icon">
+                <label>Gender <span class="login-danger">*</span></label>
+                <select class="form-control select" formControlName="civilite">
+                  <option value="F">Female</option>
+                  <option value="M">Male</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>CNE <span class="login-danger">*</span></label>
+                <input class="form-control" type="text" formControlName="cne"/>
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>E-Mail <span class="login-danger">*</span></label>
+                <input
+                  class="form-control"
+                  type="email"
+                  formControlName="email"
+                />
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Major<span class="login-danger">*</span></label>
+                <select class="form-control" (change)="fetchClass(filiereSelect.value)" #filiereSelect>
+                  <option value="" disabled selected>Select a major</option>
+                  <option *ngFor="let filiere of filieres" [value]="filiere.id">{{ filiere.libelle }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Grade (Classe) <span class="login-danger">*</span></label>
+                <select class="form-control select" formControlName="classe" (change)="getGroupesByClasse()" [(ngModel)]="selectedClasseId">
+                  <option value="" disabled selected>Choose a grade</option>
+                  <option *ngFor="let classe of Classes" [value]="classe.id">{{ classe.libelle }}</option>
+                  <!-- Add more class options as needed -->
+                </select>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Groupe<span class="login-danger">*</span></label>
+                <select class="form-control select" formControlName="groupe" required>
+                  <option value="" disabled selected>Choose a groupe of this classe</option>
+                  <option *ngFor="let groupe of groupes" [value]="groupe.id">{{ groupe.libelle }}</option>
+                  <!-- Add more group options as needed -->
+                </select>
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Phone Number </label>
+                <input class="form-control" type="text" formControlName="tel"/>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label
+                >UserName(Login) <span class="login-danger">*</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="login"
+                />
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Password <span class="login-danger">*</span></label>
+                <input
+                  type="password"
+                  class="form-control"
+                  formControlName="password"
+                />
+              </div>
+            </div>
+
+            <div
+              class="col-12 d-flex align-items-center justify-content-center"
+            >
+              <div class="student-submit">
+                <button type="submit" class="btn btn-primary">Confirm</button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <hr class="mt-4" />
+            <div class="col-12 col-sm-12">
+              <div class="form-group students-up-files">
+                <label>
+                  You can also upload a list of students (xlsx)
+                </label>
+                <div class="uplod">
+                  <label >
+                    View Example of File
+                    <button (click)="downloadXSL()" class="green-button">Download XSL File</button>
+
+                  </label>
+                </div>
+                <div class="uplod">
+                  <label class="file-upload image-upbtn mb-0">
+                    Upload File <input type="file" id="fileInput" (change)="handleFileInput($event)" />
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

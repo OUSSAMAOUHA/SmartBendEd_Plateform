@@ -1,0 +1,109 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card comman-shadow">
+      <div class="card-body">
+        <form [formGroup]="editProfFormGroup" (submit)="handleUpdateProf()">
+          <div class="row">
+            <div class="col-12">
+              <h5 class="form-title student-info">
+                Profesor Informations<span
+                  ><a href="javascript:;"
+                    ><i class="feather-more-vertical"></i></a
+                ></span>
+              </h5>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>First Name <span class="login-danger">*</span></label>
+                <input
+                  class="form-control"
+                  type="text"
+                  formControlName="prenom"
+                />
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Family Name <span class="login-danger">*</span></label>
+                <input class="form-control" type="text" formControlName="nom" />
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms angle-icon">
+                <label>Gender <span class="login-danger">*</span></label>
+                <select class="form-control select" formControlName="civilite">
+                  <option value="F">Female</option>
+                  <option selected="" value="M">Male</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>CNE <span class="login-danger">*</span></label>
+                <input class="form-control" type="text" formControlName="cne" />
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>E-Mail <span class="login-danger">*</span></label>
+                <input
+                  class="form-control"
+                  type="email"
+                  formControlName="email"
+                />
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Speciality <span class="login-danger">*</span></label>
+                <input
+                  class="form-control"
+                  type="text"
+                  formControlName="specialite"
+                />
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Phone Number </label>
+                <input class="form-control" type="text" formControlName="tel" />
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label
+                  >Username(Login) <span class="login-danger">*</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="login"
+                />
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Password <span class="login-danger">*</span></label>
+                <input
+                  type="password"
+                  class="form-control"
+                  formControlName="password"
+                />
+              </div>
+            </div>
+
+            <div
+              class="col-12 d-flex align-items-center justify-content-center"
+            >
+              <div class="student-submit">
+                <button type="submit" class="btn btn-primary">Confirm</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

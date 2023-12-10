@@ -1,0 +1,114 @@
+<app-page-header
+  [link]="'coursmodules'"
+  [prev]="'Modeling courses'"
+  [current]="'Add a Module'"
+></app-page-header>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card comman-shadow">
+      <div class="card-body">
+        <form [formGroup]="newModuleFormGroup" (ngSubmit)="handleAddModule()">
+          <div class="row">
+            <div class="col-12">
+              <h5 class="form-title student-info">
+                Moding Course Informations<span
+              ><a href="javascript:;"
+              ><i class="feather-more-vertical"></i></a
+              ></span>
+              </h5>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Libel <span class="login-danger">*</span></label>
+                <input
+                  class="form-control"
+                  type="text"
+                  formControlName="libelle"
+                />
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Onsite Hourly Volume <span class="login-danger">*</span></label>
+                <input class="form-control" type="text" formControlName="volumeHoraireOnsite" />
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms angle-icon">
+                <label>Remote Hourly Volume <span class="login-danger">*</span></label>
+                <input class="form-control" type="text" formControlName="volumeHoraireOnRemote" />
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Nbr TD <span class="login-danger">*</span></label>
+                <input
+                  class="form-control"
+                  type="text"
+                  formControlName="nbrTD"
+                />
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Nbr TP <span class="login-danger">*</span></label>
+                <input class="form-control" type="text" formControlName="nbrTP" />
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Nbr Evaluation <span class="login-danger">*</span></label>
+                <input
+                  class="form-control"
+                  type="text"
+                  formControlName="nbrEvaluation"
+                />
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Major<span class="login-danger">*</span></label>
+                <select class="form-control select" formControlName="filiere" (change)="getClassesByFiliere(); getSemestreByFiliere()" [(ngModel)]="selectedFiliereId">
+                  <option value="" disabled selected>Choose a Major</option>
+                  <option *ngFor="let filieres of filiere" [value]="filieres.id">{{ filieres.libelle }}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-4" >
+              <div class="form-group local-forms">
+                <label>Grad</label>
+                <select class="form-control select" formControlName="classe">
+                  <option value="" disabled selected>Choose a Grad of this Major</option>
+                  <option *ngFor="let groupe of classe" [value]="groupe.id">{{ groupe.libelle }}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Semestre </label>
+                <select class="form-control select" formControlName="semestre">
+                  <option value="" disabled selected>Choose a semester</option>
+                  <option *ngFor="let semester of semesters" [value]="semester">
+                    {{ semester }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+
+
+
+            <div class="col-12 d-flex align-items-center justify-content-center">
+              <div class="student-submit">
+                <button type="submit" class="btn btn-primary">Confirm</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

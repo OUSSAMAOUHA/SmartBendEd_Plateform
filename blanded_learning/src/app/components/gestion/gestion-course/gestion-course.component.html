@@ -1,0 +1,159 @@
+<app-page-header
+  [link]="'coursmodules'"
+  [prev]="'Coursomdules'"
+  [current]="'Manage Coursomdules'"
+></app-page-header>
+
+<div class="student-group-form">
+  <form [formGroup]="searchFormGroup" >
+    <!-- Search form -->
+    <div class="row">
+      <div class="col-lg-3 col-md-6">
+        <div class="form-group">
+          <input
+            formControlName="keyword"
+            type="text"
+            class="form-control"
+            placeholder="Search by Module Name..."
+          />
+        </div>
+      </div>
+      <div class="col-lg-2">
+        <div class="search-student-btn">
+          <button type="btn" class="btn btn-primary">Search</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card card-table">
+      <div class="card-body">
+        <div class="page-header">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="page-title">Modeling course (Modele)</h3>
+            </div>
+            <div class="col-auto text-end float-end ms-auto download-grp">
+              <a routerLink="/coursmodules/add" class="btn btn-primary">
+                <i class="fas fa-plus"></i>
+              </a>
+            </div>
+            <div class="col-auto text-end float-end ms-auto download-grp">
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Affect Teacher to modeling course
+              </button>
+            </div>
+          </div>
+          <div class="row align-items-center">
+            <div class="col">
+              <span class="m-2">Display</span>
+              <!-- when selected value changes, handle that -->
+
+              <span class="m-2">Entries</span>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table
+            class="table border-0 star-student table-hover table-center mb-0 datatable table-striped"
+          >
+            <thead class="student-thread">
+            <tr>
+              <th>Module Name</th>
+              <th>Major (Filiere)</th>
+              <th>Level (Class)</th>
+              <th>Semester</th>
+              <th>On Site Hours</th>
+              <th>Remote Hours</th>
+              <th>TD Count</th>
+              <th>TP Count</th>
+              <th>Evaluation Count</th>
+
+              <th class="text-end">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let module of modules">
+              <td>{{ module.libelle }}</td>
+              <td>{{ module.filiere.libelle }}</td>
+              <td>{{ module.classe.libelle }}</td>
+              <td>{{ module.semestre }}</td>
+              <td>{{ module.volumeHoraireOnsite }}h</td>
+              <td>{{ module.volumeHoraireOnRemote }}h</td>
+              <td>{{ module.nbrTD }}</td>
+              <td>{{ module.nbrTP }}</td>
+              <td>{{ module.nbrEvaluation }}</td>
+
+              <td class="text-end">
+                <div class="actions">
+                  <button (click)="handleEditModule(module)" class="btn btn-sm bg-success-light me-2">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button (click)="handleDeleteModule(module)" class="btn btn-sm bg-danger-light">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+        <!-- Pagination -->
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Affect teacher to course</h5>
+        <button type="button" #close class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close"></button>
+      </div>
+      <form #form="ngForm" (ngSubmit)="affect(form)">
+      <div class="modal-body">
+            Major
+            <select class="form-control" (change)="fetchClass(filiereSelect.value)" #filiereSelect>
+              <option value="" disabled selected>Select a major</option>
+              <option *ngFor="let filiere of filieres" [value]="filiere.id">{{ filiere.libelle }}</option>
+            </select>
+            Grade (Classe)
+            <select class="form-control select" formControlName="classe" #classeSelect (change)="loadModulles(classeSelect.value);getGroupesByClasse(classeSelect.value)">
+              <option value="" disabled selected>Choose a grade</option>
+              <option *ngFor="let classe of Classes" [value]="classe.id">{{ classe.libelle }}</option>
+              <!-- Add more class options as needed -->
+            </select>
+        modules:
+        <select class="form-control select" ngModel name="module">
+          <option value="" disabled selected>Choose a module</option>
+          <option *ngFor="let module of modulles" [ngValue]="module">{{ module.libelle }}</option>
+        </select>
+
+        teacher:
+        <select class="form-control select" ngModel name = "prof">
+          <option value="" disabled selected>Choose a proffessor</option>
+          <option *ngFor="let prof of profs" [ngValue]="prof">{{ prof.nom  }} {{prof.prenom}}</option>
+          <!-- Add more class options as needed -->
+        </select>
+        group:
+        <select class="form-control select" ngModel name = "groupe">
+          <option value="" disabled selected>Choose a group</option>
+          <option *ngFor="let groupe of groupes" [ngValue]="groupe">{{ groupe.libelle}}</option>
+          <!-- Add more class options as needed -->
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+      </form>
+    </div>
+
+  </div>
+</div>

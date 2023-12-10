@@ -1,0 +1,77 @@
+<app-page-header
+  [link]="'Groups'"
+  [prev]="'Groups'"
+  [current]="'Add Group'"
+></app-page-header>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card comman-shadow">
+      <div class="card-body">
+        <form [formGroup]="newGroupFormGroup" (ngSubmit)="handleAddGroup()">
+          <div class="row">
+            <div class="col-12">
+              <h5 class="form-title student-info">
+                Group Informations<span
+              ><a href="javascript:;"
+              ><i class="feather-more-vertical"></i></a
+              ></span>
+              </h5>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Label <span class="login-danger">*</span></label>
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="label ...."
+                  formControlName="libelle"
+                />
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Major<span class="login-danger">*</span></label>
+                <select class="form-control" (change)="fetchClass(filiereSelect.value)" #filiereSelect>
+                  <option value="" disabled selected>Select a major</option>
+                  <option *ngFor="let filiere of filieres" [value]="filiere.id">{{ filiere.libelle }}</option>
+                </select>
+              </div>
+            </div>
+
+
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Major<span class="login-danger">*</span></label>
+                <select class="form-control" formControlName="classe">
+                  <option value="" disabled selected>Select a major</option>
+                  <option *ngFor="let classe of Classes" [value]="classe.id">{{ classe.libelle }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-12 d-flex align-items-center justify-content-center">
+              <div class="student-submit">
+                <button type="submit" class="btn btn-primary">Confirmer</button>
+              </div>
+            </div>
+          </div>
+          <!--  <div>
+                <hr class="mt-4" />
+                <div class="col-12 col-sm-12">
+                  <div class="form-group students-up-files">
+                    <label>
+                      Vous pouvez également charger une liste de classes (xlsx, csv, txt)
+                    </label>
+                    <div class="uplod">
+                      <label class="file-upload image-upbtn mb-0">
+                        Choisir un Fichier <input type="file" />
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>-->
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

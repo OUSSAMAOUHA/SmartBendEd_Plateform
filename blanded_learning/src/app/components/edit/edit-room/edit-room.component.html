@@ -1,0 +1,75 @@
+<app-page-header
+  [link]="'salles'"
+  [prev]="'Rooms'"
+  [current]="'Add Room'"
+></app-page-header>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card comman-shadow">
+      <div class="card-body">
+        <form [formGroup]="editSalleFormGroup" (ngSubmit)="handleUpdateSalle()">
+          <div class="row">
+            <div class="col-12">
+              <h5 class="form-title student-info">
+                Room Informations<span
+                  ><a href="javascript:;"
+                    ><i class="feather-more-vertical"></i></a
+                ></span>
+              </h5>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Bloc<span class="login-danger">*</span></label>
+                <select class="form-control" formControlName="bloc">
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Number <span class="login-danger">*</span></label>
+                <input
+                  class="form-control"
+                  formControlName="numSalle"
+                  type="number"
+                />
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Capacity <span class="login-danger">*</span></label>
+                <input
+                  class="form-control"
+                  formControlName="capacite"
+                  type="number"
+                />
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Type <span class="login-danger">*</span></label>
+                <select class="form-control select" formControlName="typeSalle">
+                  <option value="Simple">Simple</option>
+                  <option value="Tps">Tps</option>
+                  <option value="Amphi">Amphi</option>
+                  <option value="miniAmphi">Mini Amphi</option>
+                </select>
+              </div>
+            </div>
+
+            <div
+              class="col-12 d-flex align-items-center justify-content-center"
+            >
+              <div class="student-submit">
+                <button type="submit" class="btn btn-primary">Confirm</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

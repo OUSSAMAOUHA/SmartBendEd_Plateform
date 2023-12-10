@@ -1,0 +1,106 @@
+<app-page-header
+  [link]="'filieres'"
+  [prev]="'Major'"
+  [current]="'Add Major'"
+></app-page-header>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card comman-shadow">
+      <div class="card-body">
+          <form
+            [formGroup]="newFiliereFormGroup"
+            (ngSubmit)="handleAddFiliere()"
+          >
+          <div class="row">
+            <div class="col-12">
+              <h5 class="form-title student-info">
+                Major Informations<span
+              ><a href="javascript:;"
+              ><i class="feather-more-vertical"></i></a
+              ></span>
+              </h5>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Label <span class="login-danger">*</span></label>
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="label ...."
+                  formControlName="libelle"
+                />
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Number of Semesters <span class="login-danger">*</span></label>
+                <input
+                  class="form-control"
+                  type="number"
+                  placeholder="Number of Semesters...."
+                  formControlName="nombreSem"
+                />
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-4">
+
+              <div class="form-group local-forms">
+                <label
+                >Major Coordinator<span class="login-danger">*</span></label
+                >
+                <input
+                  class="form-control"
+                  type="text"
+                  formControlName="chefFiliere"
+                />
+              </div>
+
+              <div class="form-group local-forms">
+                <label>Department<span class="login-danger">*</span></label>
+                <select class="form-control" formControlName="departement">
+                  <option value="TRI">TRI</option>
+                  <option value="STIN">STIN</option>
+                </select>
+              </div>
+
+
+            </div>
+
+
+
+            <div class="col-12 d-flex align-items-center justify-content-center">
+              <div class="student-submit">
+                <button type="submit" class="btn btn-primary">Confirm</button>
+              </div>
+            </div>
+            <hr class="mt-4" />
+
+             <div class="col-12 col-sm-12">
+               <div class="form-group students-up-files">
+                 <label>
+                   You can also upload a list of students (xlsx)
+                 </label>
+                 <div class="uplod">
+                   <label >
+                     View Example of File
+                     <button (click)="downloadXSL()" class="green-button">Download XSL File</button>
+
+                   </label>
+                 </div>
+                 <div class="uplod">
+                   <label class="file-upload image-upbtn mb-0">
+                     Upload a File <input type="file" id="fileInput" (change)="handleFileInput($event)" />
+                   </label>
+                 </div>
+               </div>
+             </div>
+
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

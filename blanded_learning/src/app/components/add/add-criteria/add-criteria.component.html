@@ -1,0 +1,164 @@
+<app-page-header
+  [link]="'Non Disponibilités'"
+  [prev]="'Prod'"
+  [current]="'Home'"
+></app-page-header>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card card-table">
+      <div class="card-body">
+        <div class="page-header">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="page-title">Constraintes</h3>
+            </div>
+            <div class="col-auto text-end float-end ms-auto download-grp" *ngIf="criteria != null">
+              <button (click)="edit = !edit"  class="btn btn-primary">
+                <i class="fas fa-edit"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+        <fieldset>
+        <div *ngIf="edit">
+          <form #form="ngForm" (ngSubmit)="handeleditCritere()" [formGroup]="editCritereGroup">
+            <table class="table table-striped">
+              <tr>
+                <td><h3 class="page-title">do you got an infrastructure (internet ...) ?</h3> <select class="form-control select" formControlName="infrastructure" >
+                  <option value="" disabled selected>choose your infrastructure</option>
+                  <option >Yes</option>
+                  <option >No</option>
+                  <!-- Add more class options as needed -->
+                </select></td>
+                <td><h3 class="page-title">do you got an equipment ? </h3> <select class="form-control select" formControlName="equipment">
+                  <option value="" disabled selected>choose your equipment</option>
+                  <option >Yes</option>
+                  <option >No</option>
+                  <!-- Add more class options as needed -->
+                </select></td>
+              </tr>
+              <tr>
+                <td><h3 class="page-title">What is you Preference ? </h3>
+                  <select class="form-control select" formControlName="preference">
+                    <option value="" disabled selected>choose your preference</option>
+                    <option >On site</option>
+                    <option >Hybride</option>
+                    <!-- Add more class options as needed -->
+                  </select></td>
+                <td><h3 class="page-title">do you got a learning space ?</h3> <select class="form-control select" formControlName="learningSpace">
+                  <option value="" disabled selected>choose your learning space</option>
+                  <option >Yes</option>
+                  <option >No</option>
+                  <!-- Add more class options as needed -->
+                </select></td>
+              </tr>
+            </table>
+            <button type="submit" class="btn btn-primary">Save Criteria</button>
+          </form>
+        </div>
+        </fieldset>
+        <div *ngIf="criteria == null">
+        <form #form="ngForm" (ngSubmit)="saveCriteria(form)">
+          <table class="table table-striped">
+            <tr>
+              <td><h3 class="page-title">do you got an infrastructure (internet ...) ?</h3> <select class="form-control select" ngModel name = "infrastructure">
+                <option value="" disabled selected>choose your infrastructure</option>
+                <option >Yes</option>
+                <option >No</option>
+                <!-- Add more class options as needed -->
+              </select></td>
+              <td><h3 class="page-title">do you got an equipment ? </h3> <select class="form-control select" ngModel name = "equipment">
+                <option value="" disabled selected>choose your equipment</option>
+                <option >Yes</option>
+                <option >No</option>
+                <!-- Add more class options as needed -->
+              </select></td>
+            </tr>
+            <tr>
+              <td><h3 class="page-title">What is you Preference ? </h3>
+                <select class="form-control select" ngModel name = "preference">
+                <option value="" disabled selected>choose your preference</option>
+                <option >On site</option>
+                <option >Hybride</option>
+                <!-- Add more class options as needed -->
+              </select></td>
+              <td><h3 class="page-title">do you got a learning space ?</h3> <select class="form-control select" ngModel name = "learningSpace">
+                <option value="" disabled selected>choose your learning space</option>
+                <option >Yes</option>
+                <option >No</option>
+                <!-- Add more class options as needed -->
+              </select></td>
+            </tr>
+          </table>
+            <button type="submit" class="btn btn-primary">Save Criteria</button>
+        </form>
+        </div>
+        <div *ngIf="criteria != null">
+
+          <table class="table table-striped">
+            <tr>
+              <td><h3 class="page-title">equipment</h3> {{criteria.equipment}}</td>
+              <td><h3 class="page-title">preference </h3> {{criteria.preference}}</td>
+            </tr>
+            <tr>
+              <td><h3 class="page-title">infrastructure </h3> {{criteria.infrastructure}}</td>
+              <td><h3 class="page-title">the learning space</h3> {{criteria.learningSpace}}</td>
+            </tr>
+          </table>
+        </div>
+
+        <!--<table
+          class="table border-0 star-student table-hover table-center mb-0 datatable table-striped"
+        >
+          <thead class="student-thread">
+            <tr>
+              <th>
+                <div class="form-check check-tables">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="something"
+                  />
+                </div>
+              </th>
+              <th>ID</th>
+              <th>Jour</th>
+              <th>Enseignant</th>
+              <th>Periode</th>
+
+              <th class="text-end">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let nondispo of nonDispos">
+              <td>
+                <div class="form-check check-tables">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="something"
+                  />
+                </div>
+              </td>
+              <td>{{ nondispo.id }}</td>
+              <td>{{ nondispo.jour }}</td>
+              <td>{{ nondispo.enseignant.nom }}</td>
+              <td>{{ nondispo.periode }}</td>
+              <td class="text-end">
+                <div class="actions">
+                  <a class="btn btn-sm bg-success-light me-2">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                  <a class="btn btn-sm bg-danger-light">
+                    <i class="fas fa-trash"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>-->
+      </div>
+    </div>
+  </div>
+</div>

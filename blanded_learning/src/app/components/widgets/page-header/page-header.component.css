@@ -1,0 +1,19 @@
+.page-sub-header {
+  display: flex;
+  justify-content: flex-start; /* Align content to the left */
+  align-items: center; /* Vertically center content */
+}
+
+.breadcrumb {
+  margin: 0; /* Remove default margin for ul */
+  padding: 0; /* Remove default padding for ul */
+}
+
+.breadcrumb-item {
+  list-style: none; /* Remove list-style for li elements */
+  margin-right: 10px; /* Add some spacing between list items if needed */
+}
+
+.breadcrumb-item:last-child {
+  margin-right: 0; /* Remove margin for the last list item */
+}
