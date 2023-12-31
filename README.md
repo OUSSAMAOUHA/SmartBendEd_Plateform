@@ -141,8 +141,19 @@ The backend code follows a modular and organized structure, leveraging the power
 3. **MySQL Connector/J:**
    - Purpose: JDBC driver for connecting to a MySQL database.
 
-4. **OpenPDF:**
-    - Purpose: Library for creating and manipulating PDF documents.
+4. **OptaPlanner:**
+    - Purpose: OptaPlanner is an AI constraint satisfaction solver that is used for automated planning and optimization. It provides optimization algorithms to solve complex planning problems, making it suitable for scenarios like resource allocation, scheduling, and more in your blended learning platform.
+```xml
+        <dependency>
+            <groupId>org.optaplanner</groupId>
+            <artifactId>optaplanner-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.optaplanner</groupId>
+            <artifactId>optaplanner-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+```
 
 ## Getting Started
 
