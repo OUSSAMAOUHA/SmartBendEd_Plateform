@@ -46,6 +46,7 @@ export class NonDisponibleComponent {
   update(module: any) {
     let modulee:Module;
     modulee = module;
+    modulee.edited = true;
     console.log(module)
     this.moduleService.createModule(modulee,modulee.classe.id,module.filiere.id).subscribe(data =>{
       console.log(data)

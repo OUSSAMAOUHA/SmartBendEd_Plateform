@@ -22,18 +22,19 @@ public class EnsajPlanning {
                                 FiliereRepository filiereRepository, ModuleRepository moduleRepository) {
         return args -> {
             // Create the Admin
-            Admin admin = new Admin();
-            admin.setNom("Ouhayou");
-            admin.setPrenom("Oussama");
-            admin.setEmail("admin@admin.com");
-            admin.setPassword("admin");
-            admin.setTel("0600000000");
-            admin.setCivilite("M");
-            admin.setLogin("admin");
-            admin.setCne("555");
-            admin.setAdmin_type(TypeAdmin.SUPER_ADMIN);
-            //userRepository.save(admin);
-
+            if (userRepository.findpersone("ADMIN") == null) {
+                Admin admin = new Admin();
+                admin.setNom("Admin");
+                admin.setPrenom("Admin");
+                admin.setEmail("admin@admin.com");
+                admin.setPassword("admin@admin");
+                admin.setTel("0600000000");
+                admin.setCivilite("M");
+                admin.setLogin("admin@admin");
+                admin.setCne("555");
+                admin.setAdmin_type(TypeAdmin.SUPER_ADMIN);
+                userRepository.save(admin);
+            }
         };
 
     }

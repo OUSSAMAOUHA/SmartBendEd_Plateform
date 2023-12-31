@@ -1,5 +1,6 @@
 package ensaj.planning.services;
 
+import ensaj.planning.entities.Classe;
 import ensaj.planning.repository.ClasseRepository;
 import ensaj.planning.repository.GroupeRepository;
 import ensaj.planning.repository.UserRepository;
@@ -35,9 +36,11 @@ public class IEtudiantServiceImpl implements IEtudiantService {
 
     @Override
     @Transactional
-    public Etudiant addEtudiant(Etudiant etudiant, Long groupeId) {
-        Groupe groupe = groupeRepository.findById(groupeId).orElse(null);
-        etudiant.setGroupe(groupe);
+    public Etudiant addEtudiant(Etudiant etudiant, Long classeId) {
+        Classe classe = classeRepository.findById(classeId).orElse(null);
+        Groupe grp = groupeRepository.findById(1L).orElse(null); // Assuming Groupe ID is 1
+        etudiant.setClasse(classe);
+        etudiant.setGroupe(grp);
         return userRepository.save(etudiant);
     }
 

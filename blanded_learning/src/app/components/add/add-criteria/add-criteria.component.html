@@ -1,7 +1,7 @@
 <app-page-header
   [link]="'Non Disponibilités'"
-  [prev]="'Prod'"
-  [current]="'Home'"
+  [prev]="'Home'"
+  [current]="'Preferences'"
 ></app-page-header>
 <div class="row">
   <div class="col-sm-12">
@@ -11,11 +11,6 @@
           <div class="row align-items-center">
             <div class="col">
               <h3 class="page-title">Constraintes</h3>
-            </div>
-            <div class="col-auto text-end float-end ms-auto download-grp" *ngIf="criteria != null">
-              <button (click)="edit = !edit"  class="btn btn-primary">
-                <i class="fas fa-edit"></i>
-              </button>
             </div>
           </div>
 

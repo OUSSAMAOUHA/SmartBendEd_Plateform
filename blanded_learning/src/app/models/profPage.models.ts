@@ -5,6 +5,7 @@ import { Prof } from "./prof.models";
 import { Salle } from "./salles.models";
 import {Etudiant} from "./etudiant.model";
 import {Groupe} from "./groupe.model";
+import {Module} from "./modules.models";
 
 export interface PageProf {
     content:          Prof[];
@@ -60,6 +61,15 @@ export interface PageClasse {
 
 export interface PageGroup {
   content:          Groupe[];
+  totalPages:       number;
+  totalElements:    number;
+  size:             number;
+  number:           number;
+  numberOfElements: number;
+}
+
+export interface PageModule {
+  content:          Module[];
   totalPages:       number;
   totalElements:    number;
   size:             number;

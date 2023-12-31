@@ -20,4 +20,9 @@ public class Salle {
     @Enumerated(EnumType.STRING)
     private TypeSalle typeSalle;
 
+    @Override
+    public String toString() {
+        return bloc+numSalle;
+    }
+
 }

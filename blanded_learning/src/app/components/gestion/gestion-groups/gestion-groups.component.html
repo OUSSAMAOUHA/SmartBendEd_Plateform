@@ -1,17 +1,19 @@
 <app-page-header
   [link]="'Groups'"
-  [prev]="'Groups'"
-  [current]="'Home'"
+  [prev]="'Home'"
+  [current]="'Groups'"
 ></app-page-header>
-<form >
+<form [formGroup]="searchFormGroup" (ngSubmit)="handleSearchGroup()">
+
   <div class="student-group-form">
     <div class="row">
       <div class="col-lg-3 col-md-6">
         <div class="form-group">
           <input
+            formControlName="keyword"
             type="text"
             class="form-control"
-            placeholder="Search ..."
+            placeholder="Search by Classe name"
           />
         </div>
       </div>

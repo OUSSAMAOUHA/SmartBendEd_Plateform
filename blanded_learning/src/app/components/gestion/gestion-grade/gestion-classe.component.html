@@ -1,7 +1,7 @@
 <app-page-header
   [link]="'classes'"
-  [prev]="'Classes'"
-  [current]="'Home'"
+  [prev]="'Home'"
+  [current]="'Grades'"
 ></app-page-header>
 <form [formGroup]="searchFormGroup" (ngSubmit)="handleSearchClasses()">
 <div class="student-group-form">
@@ -9,9 +9,10 @@
     <div class="col-lg-3 col-md-6">
       <div class="form-group">
         <input
+          formControlName="keyword"
           type="text"
           class="form-control"
-          placeholder="Search ..."
+          placeholder="Search by Level name"
         />
       </div>
     </div>

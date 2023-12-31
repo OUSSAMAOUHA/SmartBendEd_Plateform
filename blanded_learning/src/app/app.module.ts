@@ -54,6 +54,9 @@ import {CalendarModule, DateAdapter, MOMENT} from 'angular-calendar';
 import {adapterFactory} from "angular-calendar/date-adapters/moment";
 import moment from 'moment';
 import {FullCalendarModule} from "@fullcalendar/angular";
+import { TimetableProfComponent } from './components/timetable-prof/timetable-prof.component';
+import { ManipulationComponent } from './components/manipulation/manipulation.component';
+import {NgxSpinnerModule} from "ngx-spinner";
 @NgModule({
   declarations: [
     AppComponent,
@@ -98,7 +101,9 @@ import {FullCalendarModule} from "@fullcalendar/angular";
     BackgroundComponent,
     GestionGroupsComponent,
     EditGroupsComponent,
-    AddGroupComponent
+    AddGroupComponent,
+    TimetableProfComponent,
+    ManipulationComponent
   ],
   imports: [
     BrowserModule,
@@ -108,7 +113,8 @@ import {FullCalendarModule} from "@fullcalendar/angular";
     ReactiveFormsModule,
     BrowserAnimationsModule,
     FormsModule,
-    FullCalendarModule
+    FullCalendarModule,
+    NgxSpinnerModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'en-US' },

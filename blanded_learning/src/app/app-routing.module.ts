@@ -32,6 +32,8 @@ import {AddCriteriaComponent} from "./components/add/add-criteria/add-criteria.c
 import {GestionGroupsComponent} from "./components/gestion/gestion-groups/gestion-groups.component";
 import {EditGroupsComponent} from "./components/edit/edit-groups/edit-groups.component";
 import {AddGroupComponent} from "./components/add/add-group/add-group.component";
+import {TimetableProfComponent} from "./components/timetable-prof/timetable-prof.component";
+import {ManipulationComponent} from "./components/manipulation/manipulation.component";
 
 const routes: Routes = [
   { path :'' , component: HomeComponent},
@@ -48,6 +50,8 @@ const routes: Routes = [
     { path :'salles' , component: GestionRoomComponent},
     { path :'salles/add' , component: AddNewRoomComponent},
     { path :'emploitemps' , component: TimetableComponent},
+  { path :'emploitemps/prof' , component: TimetableProfComponent},
+  { path :'manip' , component: ManipulationComponent},
     {path:'profs/edit',component:EditProfComponent},
   {path:'etud/edit',component:EditStudentComponent},
   {path:'criteria',component:GestionCriteriaComponent},

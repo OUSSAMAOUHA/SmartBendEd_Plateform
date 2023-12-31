@@ -1,7 +1,7 @@
 <app-page-header
   [link]="'Non Disponibilités'"
-  [prev]="'Prod'"
-  [current]="'Constraint teacher'"
+  [prev]="'Home'"
+  [current]="'Preferences'"
 ></app-page-header>
 <!--<form>
   <div class="student-group-form">
@@ -53,9 +53,12 @@
             <td><h4 class="page-title">{{m.volumeHoraireOnRemote}}</h4></td>
             <td><h4 class="page-title">{{m.volumeHoraireOnsite}}</h4></td>
             <td>
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getSelectedApp(m)">
-                <i class="fas fa-edit"></i>
-              </button>
+              <div *ngIf="m.edited != true">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getSelectedApp(m)">
+                  <i class="fas fa-edit"></i>
+                </button>
+              </div>
+
             </td>
           </tr>
         </table>

@@ -1,0 +1,54 @@
+<app-page-header
+  [link]="'Manipulation'"
+  [prev]="'Home'"
+  [current]="'Manipulation'"
+></app-page-header>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card card-table">
+      <div class="card-body">
+        <div class="page-header">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="page-title">Session Mode/ TimeTable Generation</h3>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <div class="button-container">
+            <table class="table table-hover">
+              <tr>
+                <td><img src="/assets/img/mode.png" width="50%" alt="Logo" /></td>
+                <td>            <button type="button" class="block" (click)="chooseSessionMode()">Generate corresponding course modes</button>
+                </td>
+
+
+              </tr>
+              <tr>
+                <td class="semester-select">
+                  <img src="/assets/img/scheduling.png" width="30%" alt="Logo" />
+
+                </td>
+
+                <td>   Semester:
+                  <select class="custom-select" [(ngModel)]="selectedOption">
+                    <option value="1" selected>S1</option>
+                    <option value="2">S2</option>
+                    <!-- Add more options as needed -->
+                  </select>
+                  <button type="button" class="block generate-plan" (click)="generatePlanning()">Generate Planning</button>
+              </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" [type]="'square-jelly-box'" [fullScreen]="true">
+  <p style="color: white">Loading...</p>
+</ngx-spinner>

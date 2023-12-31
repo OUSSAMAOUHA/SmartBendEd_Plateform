@@ -3,6 +3,9 @@ import { CalendarOptions, EventClickArg, EventContentArg } from "@fullcalendar/c
 import dayGridPlugin from '@fullcalendar/daygrid';
 import {EtudiantService} from "../../services/etudiant.service";
 import {CookieService} from "ngx-cookie-service";
+import {TimeTableService} from "../../services/timeTable.service";
+import {SessionService} from "../../services/session.service";
+import {Session} from "../../models/session.model";
 
 @Component({
   selector: 'app-timetable',
@@ -10,6 +13,9 @@ import {CookieService} from "ngx-cookie-service";
   styleUrls: ['./timetable.component.css']
 })
 export class TimetableComponent implements OnInit {
+
+  //events:any[]=[]
+
   events = [
     {
       title: 'DevOps',
@@ -22,374 +28,116 @@ export class TimetableComponent implements OnInit {
         location: 'B11',
       },
     },
-    {
-      title: 'Encadrement',
-      start: '2023-11-27T10:30:00',
-      backgroundColor: '#D7E5CA',
-      textColor: 'white',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'm.Lachgar',
-        location: 'home',
-      },
-    },
-    {
-      title: 'microservices',
-      start: '2023-11-28T08:30:00',
-      backgroundColor: '#8EACCD',
-      textColor: 'white',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'c.baidada',
-        location: 'A1',
-      },
-    },
-    {
-      title: 'fouille et visualisation big data',
-      start: '2023-11-28T14:30:00',
-      backgroundColor: '#8EACCD',
-      textColor: 'white',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'f.kalloubi',
-        location: 'A1',
-      },
-    },
-    {
-      title: 'architecture BigData',
-      start: '2023-11-29T08:30:00',
-      backgroundColor: '#8EACCD',
-      textColor: 'white',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'f.kalloubi',
-        location: 'A1',
-      },
-    },
-    {
-      title: 'securité cloud',
-      start: '2023-11-29T14:30:00',
-      backgroundColor: '#8EACCD',
-      textColor: 'white',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'm.Boujnouni',
-        location: 'A1',
-      },
-    },
-    {
-      title: 'Aassurance qualité logiciel',
-      start: '2023-11-30T10:30:00',
-      backgroundColor: '#D7E5CA',
-      textColor: 'white',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'A.hannani',
-        location: 'A1',
-      },
-    },
-    {
-      title: 'recherche scientifique',
-      start: '2023-12-01T08:30:00',
-      backgroundColor: '#8EACCD',
-      textColor: 'white',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'c.Razouk',
-        location: 'A2',
-      },
-    },
-    {
-      title: "recherche d'emploie",
-      start: '2023-12-01T14:30:00',
-      backgroundColor: '#D7E5CA',
-      textColor: 'white',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'JADA',
-        location: 'Amphi 1',
-      },
-    },
-    {
-      title: 'DevOps',
-      start: '2023-12-04T14:30:00',
-      backgroundColor: '#8EACCD',
-      textColor: 'white',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'N.Assad',
-        location: 'B11',
-      },
-    },
-    {
-      title: 'Encadrement',
-      start: '2023-12-04T10:30:00',
-      backgroundColor: '#D7E5CA',
-      textColor: 'white',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'm.Lachgar',
-        location: 'home',
-      },
-    },
-    {
-      title: 'microservices',
-      start: '2023-12-05T08:30:00',
-      backgroundColor: '#8EACCD',
-      textColor: 'white',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'c.baidada',
-        location: 'A1',
-      },
-    },
-    {
-      title: 'fouille et visualisation big data',
-      start: '2023-12-05T14:30:00',
-      backgroundColor: '#8EACCD',
-      textColor: 'white',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'f.kalloubi',
-        location: 'A1',
-      },
-    },
-    {
-      title: 'architecture BigData',
-      start: '2023-12-06T08:30:00',
-      backgroundColor: '#8EACCD',
-      textColor: 'white',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'f.kalloubi',
-        location: 'A1',
-      },
-    },
-    {
-      title: 'securité cloud',
-      start: '2023-12-06T14:30:00',
-      backgroundColor: '#8EACCD',
-      textColor: 'white',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'm.Boujnouni',
-        location: 'A1',
-      },
-    },
-    {
-      title: 'Aassurance qualité logiciel',
-      start: '2023-12-07T10:30:00',
-      backgroundColor: '#D7E5CA',
-      textColor: 'white',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'A.hannani',
-        location: 'A1',
-      },
-    },
-    {
-      title: 'recherche scientifique',
-      start: '2023-12-08T08:30:00',
-      backgroundColor: '#8EACCD',
-      textColor: 'white',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'c.Razouk',
-        location: 'A2',
-      },
-    },
-    {
-      title: "recherche d'emploie",
-      start: '2023-12-08T14:30:00',
-      backgroundColor: '#D7E5CA',
-      textColor: 'white',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'JADA',
-        location: 'Amphi 1',
-      },
-    },
-    {
-      title: 'DevOps',
-      start: '2023-12-11T14:30:00',
-      backgroundColor: '#8EACCD',
-      textColor: 'white',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'N.Assad',
-        location: 'B11',
-      },
-    },
-    {
-      title: 'Encadrement',
-      start: '2023-12-11T10:30:00',
-      backgroundColor: '#D7E5CA',
-      textColor: 'white',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'm.Lachgar',
-        location: 'home',
-      },
-    },
-    {
-      title: 'microservices',
-      start: '2023-12-12T08:30:00',
-      backgroundColor: '#8EACCD',
-      textColor: 'white',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'c.baidada',
-        location: 'A1',
-      },
-    },
-    {
-      title: 'fouille et visualisation big data',
-      start: '2023-12-12T14:30:00',
-      backgroundColor: '#8EACCD',
-      textColor: 'white',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'f.kalloubi',
-        location: 'A1',
-      },
-    },
-    {
-      title: 'architecture BigData',
-      start: '2023-12-13T08:30:00',
-      backgroundColor: '#8EACCD',
-      textColor: 'white',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'f.kalloubi',
-        location: 'A1',
-      },
-    },
-    {
-      title: 'securité cloud',
-      start: '2023-12-13T14:30:00',
-      backgroundColor: '#8EACCD',
-      textColor: 'white',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'm.Boujnouni',
-        location: 'A1',
-      },
-    },
-    {
-      title: 'Aassurance qualité logiciel',
-      start: '2023-12-14T10:30:00',
-      backgroundColor: '#D7E5CA',
-      textColor: 'white',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'A.hannani',
-        location: 'A1',
-      },
-    },
-    {
-      title: 'recherche scientifique',
-      start: '2023-12-15T08:30:00',
-      backgroundColor: '#8EACCD',
-      textColor: 'white',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'c.Razouk',
-        location: 'A2',
-      },
-    },
-    {
-      title: "recherche d'emploie",
-      start: '2023-12-15T14:30:00',
-      backgroundColor: '#D7E5CA',
-      textColor: 'white',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'JADA',
-        location: 'Amphi 1',
-      },
-    },
-    {
-      title: 'architecture BigData',
-      start: '2023-12-26T08:30:00',
-      backgroundColor: '#F9F3CC',
-      textColor: 'black',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'f.kalloubi',
-        location: 'A1',
-      },
-    },
-    {
-      title: 'securité cloud',
-      start: '2023-12-27T14:30:00',
-      backgroundColor: '#F9F3CC',
-      textColor: 'black',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'm.Boujnouni',
-        location: 'A1',
-      },
-    },
-    {
-      title: 'Aassurance qualité logiciel',
-      start: '2023-12-28T10:30:00',
-      backgroundColor: '#F9F3CC',
-      textColor: 'black',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'A.hannani',
-        location: 'A1',
-      },
-    },
-    {
-      title: 'recherche scientifique',
-      start: '2023-12-28T08:30:00',
-      backgroundColor: '#F9F3CC',
-      textColor: 'black',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'c.Razouk',
-        location: 'A2',
-      },
-    },
-    {
-      title: "recherche d'emploie",
-      start: '2023-12-27T14:30:00',
-      backgroundColor: '#F9F3CC',
-      textColor: 'black',
-      borderColor: 'black',
-      extendedProps: {
-        instructor: 'JADA',
-        location: 'Amphi 1',
-      },
-    },
-    { }
-    // Add more events as needed
-  ];
 
-  ngOnInit(): void {
-    this.getEtudByID()
-  }
-  constructor(private etudeService:EtudiantService,  private cookieService: CookieService) {
-  }
-  etud:any;
-  getEtudByID(){
-    this.etudeService.getById(Number(this.cookieService.get('userId'))).subscribe(data =>{
-      this.etud = data;
-      console.log(this.etud)
-    }, error => {
-      console.log(error)
-    })
-  }
+  ];
 
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin],
     initialView: 'dayGridMonth',
     weekends: false,
-    events: this.events,
+    // events property initially set to an empty array
+    events: [],
     eventClick: this.handleEventClick.bind(this),
     eventContent: this.customizeEvent.bind(this)
   };
+  ngOnInit(): void {
+
+    console.log(this.calendarOptions)
+    this.getEtudByID();
+    this.getSession();
+
+  }
+  constructor(private etudeService:EtudiantService,
+              private cookieService: CookieService,
+              private timeSlotClasseService:TimeTableService,
+              private sessionService: SessionService) {
+  }
+
+  sessions:Session[]=[];
+  etud:any;
+  timeSlot:any[]=[];
+  getEtudByID() {
+    const userId = Number(this.cookieService.get('userId'));
+
+
+    this.etudeService.getById(userId).subscribe(
+      (etudData: any) => {
+        this.etud = etudData;
+        console.log(this.etud);
+
+        this.timeSlotClasseService.getAllTimeByClasse(this.etud.classe.id).subscribe(
+          (timeSlotData: any[]) => {
+            this.timeSlot = timeSlotData;
+            console.log(this.timeSlot);
+
+            let dataList = this.sortDataList();
+            console.log(dataList)
+
+
+            this.events = []; // Clear events array before populating it with new data
+            // Map timeSlot data into FullCalendar events
+            dataList.forEach(slot => {
+              let eventtopush = {
+                title: slot.module.libelle,
+                start: slot.day,
+                backgroundColor: slot.color,
+                textColor: 'black',
+                borderColor: 'black',
+                extendedProps: {
+                  instructor: slot.module.enseignant.nom,
+                  location: slot.salle,
+                },
+              };
+              if (eventtopush.backgroundColor == null){
+                if (this.sessions[0].mode == 'On site') {
+                  eventtopush.backgroundColor = "#8EACCD"
+                } else if (this.sessions[0].mode == 'Hybride') {
+                  eventtopush.backgroundColor = "#D7E5CA"
+                } else if (this.sessions[0].mode == 'Remote') {
+                  eventtopush.backgroundColor = "#F6ECA9"
+                }
+                if(this.events[this.events.length-1]?.backgroundColor=="#CD8D7A"){
+                  eventtopush.backgroundColor = "#8EACCD";
+                }
+              }
+              if(this.events[this.events.length-1]?.backgroundColor!="#CD8D7A" && eventtopush.backgroundColor!="#CD8D7A") {
+                if (this.events[this.events.length - 1]?.start.split("T")[1] == "08:30:00") {
+                  eventtopush.backgroundColor = this.events[this.events.length - 1]?.backgroundColor;
+                } else if (this.events[this.events.length - 1]?.start.split("T")[1] == "12:30:00") {
+                  eventtopush.backgroundColor = this.events[this.events.length - 1]?.backgroundColor;
+                } else if (this.events[this.events.length - 1]?.start.split("T")[1] == "13:30:00") {
+                  eventtopush.backgroundColor = this.events[this.events.length - 1]?.backgroundColor;
+                }
+              }
+              this.events.push(eventtopush);
+            });
+
+            console.log(this.events[this.events.length-1].start.split("T")[1])
+
+            // After populating events, update the calendarOptions
+            this.calendarOptions.events = this.events;
+          },
+          error => {
+            console.error('Error fetching time slots:', error);
+          }
+        );
+      },
+      error => {
+        console.error('Error fetching etud data:', error);
+      }
+    );
+  }
+
+  getSession() {
+
+
+    this.sessionService.getSession(Number(this.cookieService.get('userId'))).subscribe(data =>{
+      this.sessions = data;
+      console.log(this.sessions);
+
+    })
+  }
+
 
   handleEventClick(arg: EventClickArg) {
     // Handle event click if needed
@@ -425,6 +173,16 @@ export class TimetableComponent implements OnInit {
 
     return { domNodes: [content] };
   }
+
+  sortDataList(): any[] {
+    return this.timeSlot.sort((a, b) => {
+      const dateA = new Date(a.day);
+      const dateB = new Date(b.day);
+      return dateA.getTime() - dateB.getTime();
+    });
+  }
+
+
 
 
 

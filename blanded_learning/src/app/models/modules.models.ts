@@ -18,5 +18,6 @@ export interface Module {
   enseignant:Prof;// Reference to the Classe entity
   filiere:Filiere ;
   semestre:String ;
+  edited:boolean;
 
 }

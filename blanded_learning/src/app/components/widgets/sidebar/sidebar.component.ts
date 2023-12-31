@@ -59,6 +59,11 @@ export class SidebarComponent implements OnInit{
       title: "Cours Model",
       icon: "../assets/img/icons/icons8-study-48.png"
     },
+    {
+      link: "/manip",
+      title: "Manipulation",
+      icon: "../assets/img/icons/icons8-study-48.png"
+    },
 
 
 
@@ -71,7 +76,7 @@ sidebarProfItems = [
     icon: "../assets/img/icons/icons8-home-64.png"
   },
   {
-    link: "/emploitemps",
+    link: "/emploitemps/prof",
     title: "Emploi du temps",
     icon: "../assets/img/icons/icons8-teacher-50.png"
   },

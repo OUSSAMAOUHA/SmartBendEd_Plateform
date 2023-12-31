@@ -1,7 +1,7 @@
 <app-page-header
   [link]="'filieres'"
-  [prev]="'Majors'"
-  [current]="'Home'"
+  [prev]="'Home'"
+  [current]="'Majors'"
 ></app-page-header>
 <form [formGroup]="searchFormGroup" (ngSubmit)="handleSearchFilieres()">
 <div class="student-group-form">
@@ -9,10 +9,12 @@
     <div class="col-lg-3 col-md-6">
       <div class="form-group">
         <input
+          formControlName="keyword"
           type="text"
           class="form-control"
-          placeholder="Search.."
+          placeholder="Search by Major name"
         />
+
       </div>
     </div>
 

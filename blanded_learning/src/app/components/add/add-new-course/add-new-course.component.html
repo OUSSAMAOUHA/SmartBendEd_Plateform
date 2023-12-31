@@ -1,7 +1,7 @@
 <app-page-header
   [link]="'coursmodules'"
-  [prev]="'Modeling courses'"
-  [current]="'Add a Module'"
+  [prev]="'Courses'"
+  [current]="'Add Course'"
 ></app-page-header>
 
 <div class="row">
@@ -91,8 +91,11 @@
                 <label>Semestre </label>
                 <select class="form-control select" formControlName="semestre">
                   <option value="" disabled selected>Choose a semester</option>
-                  <option *ngFor="let semester of semesters" [value]="semester">
-                    {{ semester }}
+                  <option>
+                    S1
+                  </option>
+                  <option>
+                    S2
                   </option>
                 </select>
               </div>

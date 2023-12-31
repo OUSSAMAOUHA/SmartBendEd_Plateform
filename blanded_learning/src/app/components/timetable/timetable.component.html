@@ -1,8 +1,8 @@
 
   <app-page-header
     [link]="'emploitemps'"
-    [prev]="'Emploi du temps'"
-    [current]="'Home'"
+    [prev]="'Home'"
+    [current]="'Time Table'"
   ></app-page-header>
 
 <div class="row">
@@ -21,22 +21,22 @@
             <td><h5> Major: <span style="color: #0a58ca">{{etud.classe.filiere.libelle}}</span> </h5></td>
             <td><h5> Grade: <span style="color: #0a58ca">{{etud.classe.libelle}}</span> </h5></td>
             <td><h5> Group: <span style="color: #0a58ca">{{etud.groupe.libelle}}</span> </h5></td>
+              <td><h5> Semestre: <span style="color: #0a58ca">{{timeSlot[0].module.semestre}}</span> </h5></td>
             </tr>
           </table>
 
 
 
           <br>This is your planning :
-          <table style="width: 50%">
+          <table style="width: 100%">
             <tr>
-              <td><h1 style="color: #8EACCD">--</h1></td>
-              <td>On site</td><td><h1 style="color: #D7E5CA">--</h1></td>
-              <td>Remote</td><td><h1 style="color: #F9F3CC">--</h1></td>
-              <td>Exam</td>
+              <td>On site</td><td style="margin-left: 0%;"><h1 style="color: #8EACCD">--</h1></td>
+              <td>Hybride</td><td style="margin-left: 0%;"><h1 style="color: #D7E5CA">--</h1></td>
+              <td>Remote</td><td style="margin-left: 0%;"><h1 style="color: #F6ECA9">--</h1></td>
+              <td>Exam</td><td style="margin-left: 0%;"><h1 style="color: #CD8D7A">--</h1></td>
             </tr>
 
           </table>
-
 
           <full-calendar [options]="calendarOptions"></full-calendar>
         </div>

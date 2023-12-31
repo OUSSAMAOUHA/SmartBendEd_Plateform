@@ -23,4 +23,9 @@ public class Filiere {
     private int nombreSem;
     private String chefFiliere;
     private String departement;
+
+    // Constructor with String argument for id field
+    public Filiere(String id) {
+        this.id = Long.parseLong(id);
+    }
 }

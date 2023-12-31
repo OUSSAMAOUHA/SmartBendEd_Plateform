@@ -3,6 +3,8 @@ package ensaj.planning.web;
 import ensaj.planning.algorithm.Algorithm;
 import ensaj.planning.entities.CustomEnseignatModuleResult;
 import ensaj.planning.entities.CustomEtudiantCriteriaResult;
+import ensaj.planning.repository.SessionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +20,9 @@ public class AlgorithmController {
     private final Algorithm algorithm;
     private final JdbcTemplate jdbcTemplate;
 
+    @Autowired
+    SessionRepository sessionRepository;
+
     public AlgorithmController(Algorithm algorithm, JdbcTemplate jdbcTemplate) {
         this.algorithm = algorithm;
         this.jdbcTemplate = jdbcTemplate;
@@ -25,6 +30,7 @@ public class AlgorithmController {
 
     @GetMapping("/runAlgorithm")
     public void runAlgorithm() {
+        sessionRepository.delete();
         // Fetch professors and students from the database
         List<CustomEnseignatModuleResult> professors = fetchProfessors();
         List<CustomEtudiantCriteriaResult> students = fetchStudents();

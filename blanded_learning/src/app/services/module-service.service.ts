@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Prof } from '../models/prof.models';
 import {environment} from "../../environments/environment";
-import { PageProf } from '../models/profPage.models';
+import {PageModule, PageProf} from '../models/profPage.models';
 import {Module} from "../models/modules.models";
 
 @Injectable({
@@ -30,14 +30,24 @@ export class ModuleService  {
   }
 
   // Search for modules by keyword
-  public searchModules(keyword: string, page: number, size: number): Observable<Module> {
-    return this.http.get<Module>(`${environment.backendHost}/modules/search?keyword=${keyword}&page=${page}&size=${size}`);
+  public searchModules(keyword: string, page: number, size: number): Observable<PageModule> {
+    return this.http.get<PageModule>(`${environment.backendHost}/modules/search?keyword=${keyword}&page=${page}&size=${size}`);
+  }
+  public getModulesS(page: number, size: number): Observable<PageModule> {
+    return this.http.get<PageModule>(environment.backendHost + "/modules/pagination?page=" + page + "&size=" + size);
   }
 
   // Create a new module
   public createModule(module: Module, classeId: number, filiereId: number): Observable<Module> {
     return this.http.post<Module>(
       `${environment.backendHost}/modules?classeId=${classeId}&filiereId=${filiereId}`,
+      module
+    );
+  }
+
+  public saveModule(module: Module): Observable<Module> {
+    return this.http.post<Module>(
+      `${environment.backendHost}/modules/save`,
       module
     );
   }

@@ -1,7 +1,7 @@
 <app-page-header
   [link]="'profs'"
-  [prev]="'Proffessors'"
-  [current]="'Home'"
+  [prev]="'Home'"
+  [current]="'Profs'"
 ></app-page-header>
 
 <div class="student-group-form">
@@ -14,20 +14,11 @@
             formControlName="keyword"
             type="text"
             class="form-control"
-            placeholder="Search by name"
+            placeholder="Search by Prof name"
           />
         </div>
       </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="form-group">
-          <input
-            formControlName="keyword"
-            type="text"
-            class="form-control"
-            placeholder="Search by speciality..."
-          />
-        </div>
-      </div>
+
       <div class="col-lg-2">
         <div class="search-student-btn">
           <button type="btn" class="btn btn-primary">Search</button>

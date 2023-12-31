@@ -15,6 +15,7 @@ import {Filiere} from "../../../models/filieres.models";
 import {Classe} from "../../../models/classes.models";
 import {FiliereService} from "../../../services/filiere.service";
 import {ClasseService} from "../../../services/classe.service";
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-gestion-module',
@@ -27,13 +28,24 @@ export class GestionModuleComponent implements OnInit {
   groupes:Groupe[]=[];
 
   modulles :Module[] = [];
+  // New pagination-related properties
+
+  displayedModules: Module[] = [];
 
   module: Module | undefined;
+  modulesS: Module [] = [];
+
 
   profs:Prof[]=[];
 
-  errorMessage: string = '';
+  errorMessage!: string;
   searchFormGroup!: FormGroup;
+  page: number = 0;
+  size: number = 6;
+  totalPages: number = 0;
+  currentPage: number = 0;
+  totalelements:number=0;
+  displayedPages: number[] = [];
 
   @ViewChild('close', { static: true }) close!: ElementRef;
 
@@ -44,6 +56,7 @@ export class GestionModuleComponent implements OnInit {
     private profService:ProfServiceService,
     private classeService:ClasseService,
     private groupeService:GroupeService,
+
     private filiereService:FiliereService,private renderer: Renderer2, private groupeservice:GroupeService,private affectservice:AffectService,
   ) {}
 
@@ -52,10 +65,11 @@ export class GestionModuleComponent implements OnInit {
       keyword: this.fb.control('')
     });
 
+    this.handleSearchModules();
     // Appel de la fonction pour récupérer les modules depuis l'API
-    this.loadModules();
     this.getAllProf();
     this.fetchFilieres();
+
   }
 
   getAllProf(){
@@ -63,24 +77,6 @@ export class GestionModuleComponent implements OnInit {
       this.profs = data;
       console.log(this.profs);
     })
-  }
-
-
-
-  // Fonction pour récupérer les modules depuis l'API
-  loadModules() {
-    this.moduleService.getModules().subscribe(
-      (data: Module[]) => {
-        this.modules = data; //
-        console.log(" data0   "+data[0].libelle)// Mettre les données récupérées dans le tableau modules
-        console.log(" data1   "+data[1].libelle)// Mettre les données récupérées dans le tableau modules
-        console.log(" data2   "+data[2].libelle)// Mettre les données récupérées dans le tableau modules
-      },
-      (error) => {
-        this.errorMessage = 'Erreur lors de la récupération des modules.';
-        console.error(error);
-      }
-    );
   }
 
   getGroupesByClasse(id:any) {
@@ -158,13 +154,24 @@ export class GestionModuleComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.moduleService.deleteModule(module.id).subscribe(() => {
-          // Remove the deleted module from the list
-          this.modules = this.modules.filter((m) => m.id !== module.id);
-        });
+        this.moduleService.deleteModule(module.id).subscribe(
+          () => {
+            console.log('Module deleted successfully!');
+            const index = this.modules.findIndex((m) => m.id === module.id);
+            if (index !== -1) {
+              this.modules.splice(index, 1); // Remove deleted module from the array
+            }
+            this.handleSearchModules(); // Reload the modules after deletion
+          },
+          (error) => {
+            console.error('Error deleting the module:', error);
+            // Handle error scenario if needed
+          }
+        );
       }
     });
   }
+
   affect(form: NgForm) {
     // You can also access the form object if needed
     let affect:AffectationModuleGroupeTeacher = new AffectationModuleGroupeTeacher();
@@ -172,26 +179,42 @@ export class GestionModuleComponent implements OnInit {
     affect.module = form.value.module;
     affect.groupe = form.value.groupe;
     console.log(affect)
-    this.affectservice.saveAffect(affect).subscribe(data =>{
+    let moduleeee = form.value.module;
+    form.value.module!.enseignant = form.value.prof
+    console.log(moduleeee)
+    this.moduleService.saveModule(moduleeee).subscribe(data =>{
       console.log(data)
       Swal.fire('Success', 'Module Affected successfuly', 'success');
-        const buttonElement = this.close.nativeElement as HTMLButtonElement;
-        buttonElement.click();
-        form.reset();
-
-    },
-      err => {
-      console.error(err);
-      if (err.error && err.error.message) {
-        Swal.fire('Error', err.error.message, 'error');
-      } else {
-        Swal.fire('Error', 'erreuur', 'error');
-      }
-        const buttonElement = this.close.nativeElement as HTMLButtonElement;
-        buttonElement.click();
-        form.reset()
-    }
-    )
+      const buttonElement = this.close.nativeElement as HTMLButtonElement;
+      buttonElement.click();
+      form.reset();
+    },error => {
+      console.log(error)
+      Swal.fire('Error', 'erreuur', 'error');
+      const buttonElement = this.close.nativeElement as HTMLButtonElement;
+      buttonElement.click();
+      form.reset();
+    })
+    // this.affectservice.saveAffect(affect).subscribe(data =>{
+    //   console.log(data)
+    //   Swal.fire('Success', 'Module Affected successfuly', 'success');
+    //     const buttonElement = this.close.nativeElement as HTMLButtonElement;
+    //     buttonElement.click();
+    //     form.reset();
+    //
+    // },
+    //   err => {
+    //   console.error(err);
+    //   if (err.error && err.error.message) {
+    //     Swal.fire('Error', err.error.message, 'error');
+    //   } else {
+    //     Swal.fire('Error', 'erreuur', 'error');
+    //   }
+    //     const buttonElement = this.close.nativeElement as HTMLButtonElement;
+    //     buttonElement.click();
+    //     form.reset()
+    // }
+    // )
   }
   hideModal() {
     const modal = this.renderer.selectRootElement('#exampleModal');
@@ -212,4 +235,63 @@ export class GestionModuleComponent implements OnInit {
     }
 
   }
+
+  handleChangeSize($event: Event) {
+    this.size = parseInt((<HTMLInputElement>$event.target).value);
+    this.handleSearchModules();
+  }
+  handleSearchModules(): void {
+    this.moduleService
+      .searchModules(this.searchFormGroup.value.keyword, this.page, this.size)
+      .subscribe(
+        (data) => {
+          this.modules = data.content;
+          this.totalPages = data.totalPages;
+          this.currentPage = data.number;
+          this.setDisplayedPages();
+        },
+        (error) => {
+          this.errorMessage = error;
+          console.log(error);
+        }
+      );
+  }
+
+  setDisplayedPages(): void {
+    this.displayedPages = [];
+    const startPage = Math.floor(this.currentPage / 3) * 3;
+    for (
+      let i = startPage;
+      i < startPage + 3 && i < this.totalPages;
+      i++
+    ) {
+      this.displayedPages.push(i);
+    }
+  }
+
+  gotoPage(page: number): void {
+    this.currentPage = page;
+    this.page = page;
+    this.handleSearchModules();
+  }
+
+  goToPreviousSet(): void {
+    const startPage = Math.floor(this.currentPage / 3) * 3;
+    if (startPage - 3 >= 0) {
+      this.currentPage = startPage - 3;
+      this.page = this.currentPage;
+      this.handleSearchModules();
+    }
+  }
+
+  goToNextSet(): void {
+    const startPage = Math.floor(this.currentPage / 3) * 3;
+    if (startPage + 3 < this.totalPages) {
+      this.currentPage = startPage + 3;
+      this.page = this.currentPage;
+      this.handleSearchModules();
+    }
+  }
+
+
 }

@@ -15,6 +15,10 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<Person, Long> {
 
     @Query("SELECT u FROM Person u WHERE u.Role = ?1")
+    Person findpersone(String role);
+
+
+    @Query("SELECT u FROM Person u WHERE u.Role = ?1")
     Page<Enseignant> findUsersByRole(String role, Pageable pageable);
     @Query("SELECT u FROM Person u WHERE u.Role = ?1")
     Page<Etudiant> findUsersByRoles(String role, Pageable pageable);
@@ -26,6 +30,9 @@ public interface UserRepository extends JpaRepository<Person, Long> {
     Page<Etudiant> searchWithPaginationEtudiant(String keyword, Pageable pageable);
     @Query("SELECT u FROM Person u WHERE u.Role = ?1")
     List<Enseignant> findAllByRole(String role);
+
+    @Query("select e from Etudiant e where e.groupe.id = ?1")
+    List<Etudiant> findAllByGroupe(Long id);
 
     @Query("SELECT u FROM Person u WHERE u.Role = ?1")
     List<Etudiant> findAllByRoleEtudiant(String role);

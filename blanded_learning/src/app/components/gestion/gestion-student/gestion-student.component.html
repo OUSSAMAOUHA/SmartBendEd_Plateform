@@ -1,21 +1,22 @@
 <app-page-header
   [link]="'etudiant'"
-  [prev]="'Students'"
-  [current]="'Home'"
+  [prev]="'Home'"
+  [current]="'Students'"
 ></app-page-header>
 
 <div class="student-group-form">
     <!-- Search form -->
     <div class="row">
       <div class="col-lg-3 col-md-6">
-        <div class="form-group">
-          <label>checher les étudiant de la Classe : </label>
-          <select class="col-md-12 form-control" [(ngModel)]="selectedClasse" name="classe" required (ngModelChange)="searchEtud(selectedClasse)">
-            <option [ngValue]="null">Select a classe</option>
-            <option [ngValue]="classe" *ngFor="let classe of classes">
-              {{classe.libelle}}</option>
-          </select>
-        </div>
+          <table>
+            <tr><td> Search by students Level:</td>
+              <td><select class="col-md-12 form-control" [(ngModel)]="selectedClasse" name="classe" required (ngModelChange)="searchEtud(selectedClasse)">
+                <option [ngValue]="null">Select a Level:</option>
+                <option [ngValue]="classe" *ngFor="let classe of classes">
+                  {{classe.libelle}}</option>
+              </select></td></tr>
+          </table>
+
       </div>
     </div>
 </div>
