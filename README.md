@@ -1,12 +1,14 @@
 
-# Blended Learning project
+# SmartBendEd_Plateform project
+![logo](img/logo.png)
 
-his article describes our framework of blended learning that aims at developing a user-friendly platform designed to improve the accessibility and organization of learning. Centered around the needs of students and teachers, the platform aims to simplify scheduling, customize timetables, and boost
+This article describes our framework of blended learning that aims at developing a user-friendly platform designed to improve the accessibility and organization of learning. Centered around the needs of students and teachers, the platform aims to simplify scheduling, customize timetables, and boost
 engagement. By enabling students and teachers to share preferences and constraints, it aims to transform our approach to education. This initiative aims to not only make learning more efficient but also meet the unique needs of each student’s learning journey.
 
 ## Table of Contents
 
 - [Overview](#overview)
+- [Software architecture](#Software-architecture)
 - [Frontend](#frontend)
 - [Backend](#backend)
 - [Getting Started](#getting-started)
@@ -19,6 +21,10 @@ engagement. By enabling students and teachers to share preferences and constrain
 ## Overview
 
 The project aims to create a user-friendly blended learning platform that prioritizes efficient scheduling and planning. It seeks to empower both teachers and students by considering their constraints and preferences. This platform will not only optimize resource allocation but also enhance student engagement through adaptable learning schedules. It aspires to provide educators with tools to input their constraints and teaching modes while offering realtime updates and data-driven insights for administrators. Ultimately, the project’s goal is to improve learning outcomes by making blended learning a more organized, accessible, and effective educational approach.
+
+## Software architecture
+![archi](img/archi.png)
+The software architecture employs a decoupled approach, leveraging Spring Boot for the backend infrastructure that includes a set of dedicated controllers such as StudentController, ProfessorController, MajorController, and others, each managing HTTP requests and serving as the intermediary between the Angular frontend and the MySql database. Angular, the frontend framework, encompasses components like Add, Dashboard, Edit, Gestions, Home, Timetable, and Widgets, driving user interface interactions and sending HTTP requests to Spring Boot. Accompanying these components are numerous services like student.service, professor.service, major.service, and others in Angular, each corresponding to Spring Boot services responsible for handling business logic and operations for entities like students, professors, majors, and more. These services interact with respective repositories— StudentRepository, ProfessorRepository, MajorRepository—providing an abstraction layer for database operations. This architecture ensures efficient communication between frontend and backend, enabling scalable development and deployment while maintaining a clear separation of concerns and facilitating the management and expansion of the web application’s functionalities.
 
 ## Frontend
 
@@ -204,14 +210,11 @@ Certainly! Here are step-by-step instructions to set up and run your project loc
 
 Now, your full-stack project should be up and running locally. If you encounter any issues during setup, check the console logs for error messages and ensure that all dependencies and prerequisites are correctly installed.
 
-## Folder Structure
-
-this is the architecture of the project :
-
-![image](https://github.com/rmakaoui/blanded_learning_project/assets/101502312/2c3c4563-6723-4ec0-a47b-7aecf592df34)
-
-
-
+# Illustrative example
+Interface (Admin) for different managements
+![admin](img/sceenAdmin.png)
+A proposed scheduling program learning for a student
+![planning](img/planning.png)
 
 # Contributing
 
@@ -220,5 +223,5 @@ We welcome contributions from everyone, and we appreciate your help to make this
 ## Contributors
 
 - Reda Makaoui ([GitHub]([https://github.com/redamakaoui](https://github.com/rmakaoui)))
-- Oussama Ouhayou ([GitHub]([https://github.com/oussamaouhayou](https://github.com/OUSSAMAOUHA)))
 - Refki Elhadi ([GitHub]([https://github.com/refkielhadi](https://github.com/edwinref)https://github.com/edwinref))
+- Oussama Ouhayou ([GitHub]([https://github.com/oussamaouhayou](https://github.com/OUSSAMAOUHA)))
