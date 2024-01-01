@@ -2,13 +2,13 @@
 # SmartBendEd_Plateform project
 ![logo](img/logo.png)
 
-This article describes our framework of blended learning that aims at developing a user-friendly platform designed to improve the accessibility and organization of learning. Centered around the needs of students and teachers, the platform aims to simplify scheduling, customize timetables, and boost
-engagement. By enabling students and teachers to share preferences and constraints, it aims to transform our approach to education. This initiative aims to not only make learning more efficient but also meet the unique needs of each student’s learning journey.
+This article introduces our user-friendly platform for blended learning, aiming to improve how learning is accessed and organized. Our focus is on making scheduling easier, creating personalized timetables, and increasing engagement for both students and teachers. This platform allows students and teachers to share their preferences and constraints, changing how we approach education. An important part of our platform is the integration of an AI constraints solver in timetable creation. This advanced tool helps optimize schedules and adapt to individual needs, reshaping traditional education. By using technology to customize learning, our goal is not just to make learning more efficient, but also to meet each student's unique learning requirements.
 
 ## Table of Contents
 
 - [Overview](#overview)
 - [Software architecture](#Software-architecture)
+- [Docker Image](#Docker-Image)
 - [Frontend](#frontend)
 - [Backend](#backend)
 - [Getting Started](#getting-started)
@@ -24,7 +24,60 @@ The project aims to create a user-friendly blended learning platform that priori
 
 ## Software architecture
 ![archi](img/archi.png)
-The software architecture employs a decoupled approach, leveraging Spring Boot for the backend infrastructure that includes a set of dedicated controllers such as StudentController, ProfessorController, MajorController, and others, each managing HTTP requests and serving as the intermediary between the Angular frontend and the MySql database. Angular, the frontend framework, encompasses components like Add, Dashboard, Edit, Gestions, Home, Timetable, and Widgets, driving user interface interactions and sending HTTP requests to Spring Boot. Accompanying these components are numerous services like student.service, professor.service, major.service, and others in Angular, each corresponding to Spring Boot services responsible for handling business logic and operations for entities like students, professors, majors, and more. These services interact with respective repositories— StudentRepository, ProfessorRepository, MajorRepository—providing an abstraction layer for database operations. This architecture ensures efficient communication between frontend and backend, enabling scalable development and deployment while maintaining a clear separation of concerns and facilitating the management and expansion of the web application’s functionalities.
+ The software architecture follows a decoupled approach, employing Spring Boot for backend infrastructure with dedicated controllers (StudentController, ProfessorController, MajorController...) managing HTTP requests between the Angular frontend and MySQL database. Angular's frontend comprises components like Add, Dashboard, Edit, etc., driving user interactions and sending requests to Spring Boot. Angular services (e.g., student.service, professor.service,...) correspond to backend services handling business logic for entities like students, professors, etc., interacting with repositories (StudentRepository, ProfessorRepository...) for database operations. This approach ensures efficient communication, scalability, and separation of concerns. Additionally, the backend includes the Sessions Mode Algorithm Controller for student mode allocation and services (Sessions Service, Timeslot Service) managing session allocation, time slots, and course coordination. Furthermore, an AI constraints solver based on Oplaplanner enhances the architecture, comprising three vital services: TimeTableConstraintProvider, TimeTableEasyScoreCalculator, and TimeTableSolverService, optimizing scheduling solutions based on constraints and preferences while enabling scalable development and intelligent scheduling mechanisms.
+ These components ensure efficient communication between frontend and backend, enabling scalable development and deployment. They maintain a clear separation of concerns, facilitate the management and expansion of the web application’s functionalities, and introduce intelligent scheduling mechanisms into the architecture.
+
+## Docker Image
+```yaml
+version: '3'
+services:
+  blanded_learning_backend:
+    container_name: blanded_learning_backend
+    restart: always
+    ports:
+      - "8082:8082"
+    image: rmakaoui/mybackend:4.0  # Update this line with the correct image name and tag
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_PORT=3306
+    depends_on:
+      - mysql
+    networks:
+      - app-network
+
+  mysql:
+    container_name: mysql
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: mydatabase
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - app-network
+
+  blanded_learning_frontend:
+    container_name: blanded_learning_frontend
+    image: rmakaoui/myfrontend:9.0  # Update this line with the correct image name and tag
+    ports:
+      - 4200:80
+    depends_on:
+      - blanded_learning_backend
+    networks:
+      - app-network
+
+volumes:
+  mysql:
+
+networks:
+  app-network:
+    driver: bridge
+
+
+
+```
 
 ## Frontend
 
@@ -222,10 +275,21 @@ Certainly! Here are step-by-step instructions to set up and run your project loc
 Now, your full-stack project should be up and running locally. If you encounter any issues during setup, check the console logs for error messages and ensure that all dependencies and prerequisites are correctly installed.
 
 # Illustrative example
-Interface (Admin) for different managements
+We aim to present a scheduling solution based on a student’s learning
+preferences and constraints. This particular student possesses specific
+learning space requirements, necessitates access to specific infrastruc-
+ture and equipment, and expresses a preference for a hybrid learning
+mode.
+
+
 ![admin](img/sceenAdmin.png)
-A proposed scheduling program learning for a student
+Figure 2: Interface (Admin) for different managements
+
+Consequently, the generated program will account for these constraints
+and preferences, offering a diverse and suitable plan for their academic
+journey.
 ![planning](img/planning.png)
+Figure 3: A proposed scheduling program learning for a student
 
 # Contributing
 
