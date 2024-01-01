@@ -60,7 +60,7 @@ services:
 
   blanded_learning_frontend:
     container_name: blanded_learning_frontend
-    image: rmakaoui/myfrontend:9.0  # Update this line with the correct image name and tag
+    image: rmakaoui/myfrontend:10.0  # Update this line with the correct image name and tag
     ports:
       - 4200:80
     depends_on:
@@ -74,6 +74,7 @@ volumes:
 networks:
   app-network:
     driver: bridge
+
 
 
 
