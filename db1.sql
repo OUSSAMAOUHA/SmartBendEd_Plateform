@@ -227,18 +227,18 @@ CREATE TABLE `person` (
 
 INSERT INTO `person` (`role`, `id`, `civilite`, `cne`, `email`, `is_authentificated`, `login`, `nom`, `password`, `prenom`, `tel`, `admin_type`, `specialite`, `classe_id`, `groupe_id`) VALUES
 ('ADMIN', 1, 'M', '555', 'admin@admin.com', 1, 'admin@admin', 'Admin', 'admin@admin', 'Admin', '0600000000', 'SUPER_ADMIN', NULL, NULL, NULL),
-('PROF', 2, 'M', 'lkjhgd', 'm.lachgar@gmail.com', 0, 'lachgar', 'lachgar', 'lachgar', 'mohamed', '0987654', NULL, 'dev', NULL, NULL),
-('PROF', 3, 'Monsieur', 'ee', 'email1@example.com', 0, 'assad', 'assad', 'assad', 'assad', '123456789', NULL, 'Specialty1', NULL, NULL),
-('PROF', 4, 'Monsieur', 'rrr', 'email2@example.com', 0, 'kalloubi', 'kalloubi', 'kalloubi', 'kalloubi', '123456789', NULL, 'Specialty2', NULL, NULL),
-('PROF', 5, 'Monsieur', 'ttt', 'smith@example.com', 0, 'boujnouni', 'boujnouni', 'boujnouni', 'boujnouni', '555-123-4567', NULL, 'Specialty4', NULL, NULL),
-('PROF', 6, 'Monsieur', 'yyy', 'email3@example.com', 0, 'hannani', 'hannani', 'hannani', 'hannani', '123456789', NULL, 'Specialty3', NULL, NULL),
-('PROF', 8, 'Monsieur', 'ii', 'emily@example.com', 0, 'baidada', 'baidada', 'baidada', 'baidada', '555-555-5555', NULL, 'Specialty6', NULL, NULL),
-('PROF', 9, 'Monsieur', 'uuu', 'alex@example.com', 0, 'hanin', 'hanin', 'hanin', 'hanin', '555-369-2580', NULL, 'Specialty7', NULL, NULL),
-('Etudiant', 26, 'M', 'ghjk', 'o@h.com', 0, 'oussama', 'hayo', 'oussama', 'oussama', 'fghj', NULL, NULL, 5, 13),
+('PROF', 2, 'M', 'lkjhgd', 'm.Profesor2@gmail.com', 0, 'Profesor2', 'Profesor2', 'Profesor2', 'Profesor2', '0987654', NULL, 'dev', NULL, NULL),
+('PROF', 3, 'Monsieur', 'ee', 'email1@example.com', 0, 'Profesor1', 'Profesor1', 'Profesor1', 'Profesor1', '123456789', NULL, 'Specialty1', NULL, NULL),
+('PROF', 4, 'Monsieur', 'rrr', 'email2@example.com', 0, 'Profesor3', 'Profesor3', 'Profesor3', 'Profesor3', '123456789', NULL, 'Specialty2', NULL, NULL),
+('PROF', 5, 'Monsieur', 'ttt', 'smith@example.com', 0, 'Profesor4', 'Profesor4', 'Profesor4', 'Profesor4', '555-123-4567', NULL, 'Specialty4', NULL, NULL),
+('PROF', 6, 'Monsieur', 'yyy', 'email3@example.com', 0, 'Profesor5', 'Profesor5', 'Profesor5', 'Profesor5', '123456789', NULL, 'Specialty3', NULL, NULL),
+('PROF', 8, 'Monsieur', 'ii', 'emily@example.com', 0, 'Profesor6', 'Profesor6', 'Profesor6', 'Profesor6', '555-555-5555', NULL, 'Specialty6', NULL, NULL),
+('PROF', 9, 'Monsieur', 'uuu', 'alex@example.com', 0, 'Profesor7', 'Profesor7', 'Profesor7', 'Profesor7', '555-369-2580', NULL, 'Specialty7', NULL, NULL),
+('Etudiant', 26, 'M', 'ghjk', 'o@h.com', 0, 'oussama', 'ouhayou', 'oussama', 'oussama', 'fghj', NULL, NULL, 5, 13),
 ('Etudiant', 27, 'M', 'dfghjk', 're@g.com', 0, 'reda', 'makaoui', 'reda', 'reda', '4567890', NULL, NULL, 5, 13),
-('Etudiant', 28, 'M', 'dfghj', 'edddd@ddddd.com', 0, 'elhadi', 'refk', 'elhadi', 'elhadiiiiiii', '9876545678', NULL, NULL, 5, 13),
-('PROF', 31, 'Mr', 'L76543', 'gazari@gmail.com', 0, 'gazari', 'gazari', 'gazari', 'gazari', '23456789', NULL, 'lc', NULL, NULL),
-('PROF', 32, 'Mr', 'l345', 'l@gmail.com', 0, 'prof1', 'prof1', 'prof1', 'prof1', '2345678', NULL, 'prof1', NULL, NULL);
+('Etudiant', 28, 'M', 'dfghj', 'edddd@ddddd.com', 0, 'elhadi', 'refki', 'elhadi', 'elhadiiiiiii', '9876545678', NULL, NULL, 5, 13),
+('PROF', 31, 'Mr', 'L76543', 'Profesor8@gmail.com', 0, 'Profesor8', 'Profesor8', 'Profesor8', 'Profesor8', '23456789', NULL, 'Specialty8', NULL, NULL),
+('PROF', 32, 'Mr', 'l345', 'l@gmail.com', 0, 'Profesor9', 'Profesor9', 'Profesor9', 'Profesor9', '2345678', NULL, 'Specialty9', NULL, NULL);
 
 -- --------------------------------------------------------
 

@@ -5,7 +5,7 @@ services:
     restart: always
     ports:
       - "8082:8082"
-    image: rmakaoui/mybackend:6.0  # Update this line with the correct image name and tag
+    image: rmakaoui/mybackend:7.0  # Update this line with the correct image name and tag
     environment:
       - MYSQL_HOST=mysql
       - MYSQL_USER=root
@@ -46,7 +46,7 @@ services:
 
   blanded_learning_frontend:
     container_name: blanded_learning_frontend
-    image: rmakaoui/myfrontend:13.0  # Update this line with the correct image name and tag
+    image: rmakaoui/myfrontend:14.0  # Update this line with the correct image name and tag
     ports:
       - 4200:80
     depends_on:
