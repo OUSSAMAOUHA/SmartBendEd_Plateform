@@ -1,5 +1,5 @@
 # Stage 1: Compile and Build Angular Codebase
-FROM node:18.17.1 as build
+FROM node:18.10.0 as build
 
 WORKDIR /usr/src/app
 

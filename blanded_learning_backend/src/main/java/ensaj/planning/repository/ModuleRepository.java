@@ -19,6 +19,9 @@ public interface ModuleRepository extends JpaRepository<Module, Long> {
     @Query("select m from Module m where m in (select a.module from AffectationModuleGroupeTeacher a where a.enseignant = ?1)")
     List<Module> getModulesByEnseignant(Enseignant enseignant);
 
+    @Query("select m from Module m where m.enseignant = ?1")
+    List<Module> getModulesByEnseignant2(Enseignant enseignant);
+
     @Query("select m from Module  m where m.classe.id = ?1")
     List<Module> getModulesByClasse(Long id);
 

@@ -4,7 +4,15 @@
   [prev]="'Home'"
   [current]="'Time Table'"
 ></app-page-header>
-
+<style>
+  .color-shape {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: 5px;
+    border-radius: 3px; /* You can use '50%' for circles */
+    }
+    </style>
 <div class="row">
   <div class="col-sm-12">
     <div class="card card-table">
@@ -18,16 +26,23 @@
 
 
           <br>This is your planning :
-          <h5> Semestre: <span style="color: #0a58ca">{{timeSlot[0].module.semestre}}</span> </h5>
-          <table style="width: 50%">
+          <table style="width: 100%">
             <tr>
-              <td><h1 style="color: #8EACCD">--</h1></td>
-              <td>On site</td><td><h1 style="color: #D7E5CA">--</h1></td>
-              <td>Remote</td><td><h1 style="color: #F9F3CC">--</h1></td>
-              <td>Exam</td>
+              <th>On site</th>
+              <th>
+                <div class="color-shape" style="background-color: #8EACCD;"></div>
+              </th>
+              <th>Remote</th>
+              <th>
+                <div class="color-shape" style="background-color: #F6ECA9;"></div>
+              </th>
+              <th>Exam</th>
+              <th>
+                <div class="color-shape" style="background-color: #CD8D7A;"></div>
+              </th>
             </tr>
-
-          </table>
+            <!-- Add the rest of your table content here -->
+            </table>
 
           <full-calendar [options]="calendarOptions"></full-calendar>
         </div>

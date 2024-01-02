@@ -4,6 +4,15 @@
     [prev]="'Home'"
     [current]="'Time Table'"
   ></app-page-header>
+  <style>
+    .color-shape {
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+      margin-right: 5px;
+      border-radius: 3px; /* You can use '50%' for circles */
+      }
+    </style>
 
 <div class="row">
   <div class="col-sm-12">
@@ -30,13 +39,21 @@
           <br>This is your planning :
           <table style="width: 100%">
             <tr>
-              <td>On site</td><td style="margin-left: 0%;"><h1 style="color: #8EACCD">--</h1></td>
-              <td>Hybride</td><td style="margin-left: 0%;"><h1 style="color: #D7E5CA">--</h1></td>
-              <td>Remote</td><td style="margin-left: 0%;"><h1 style="color: #F6ECA9">--</h1></td>
-              <td>Exam</td><td style="margin-left: 0%;"><h1 style="color: #CD8D7A">--</h1></td>
+              <th>On site</th>
+              <th>
+                <div class="color-shape" style="background-color: #8EACCD;"></div>
+              </th>
+              <th>Remote</th>
+              <th>
+                <div class="color-shape" style="background-color: #F6ECA9;"></div>
+              </th>
+              <th>Exam</th>
+              <th>
+                <div class="color-shape" style="background-color: #CD8D7A;"></div>
+              </th>
             </tr>
-
-          </table>
+            <!-- Add the rest of your table content here -->
+            </table>
 
           <full-calendar [options]="calendarOptions"></full-calendar>
         </div>

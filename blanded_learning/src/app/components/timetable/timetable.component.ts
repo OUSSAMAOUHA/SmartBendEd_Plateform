@@ -40,6 +40,8 @@ export class TimetableComponent implements OnInit {
     eventClick: this.handleEventClick.bind(this),
     eventContent: this.customizeEvent.bind(this)
   };
+
+  filteredSessions: Session[] = [];
   ngOnInit(): void {
 
     console.log(this.calendarOptions)
@@ -73,6 +75,7 @@ export class TimetableComponent implements OnInit {
             let dataList = this.sortDataList();
             console.log(dataList)
 
+            let i: number = 0;
 
             this.events = []; // Clear events array before populating it with new data
             // Map timeSlot data into FullCalendar events
@@ -88,16 +91,38 @@ export class TimetableComponent implements OnInit {
                   location: slot.salle,
                 },
               };
+              this.filterSessionsByModule(slot.module.id)
+              console.log(this.filteredSessions)
+              if (this.filteredSessions.length ==0){
+                this.filteredSessions = this.sessions;
+              }
               if (eventtopush.backgroundColor == null){
-                if (this.sessions[0].mode == 'On site') {
+                if (this.filteredSessions[0].mode == 'On site') {
+                  eventtopush.title = slot.module.libelle + " (On site)"
                   eventtopush.backgroundColor = "#8EACCD"
-                } else if (this.sessions[0].mode == 'Hybride') {
-                  eventtopush.backgroundColor = "#D7E5CA"
-                } else if (this.sessions[0].mode == 'Remote') {
+                } else if (this.filteredSessions[0].mode == 'Hybride') {
+                  if(i%2 == 1){
+                    eventtopush.title = slot.module.libelle + " (On site)"
+                    eventtopush.backgroundColor = "#8EACCD"
+                  }else{
+                    eventtopush.title = slot.module.libelle + " (On Remote)"
+                    delete eventtopush.extendedProps.location;
+                    eventtopush.backgroundColor = "#F6ECA9"
+                  }
+                } else if (this.filteredSessions[0].mode == 'Remote') {
+                  eventtopush.title = slot.module.libelle + " (On Remote)"
+                  delete eventtopush.extendedProps.location;
                   eventtopush.backgroundColor = "#F6ECA9"
                 }
                 if(this.events[this.events.length-1]?.backgroundColor=="#CD8D7A"){
                   eventtopush.backgroundColor = "#8EACCD";
+                }
+              }else {
+                if(eventtopush.backgroundColor =="#8EACCD"){
+                  eventtopush.title = slot.module.libelle + " (On site)"
+                }
+                if(eventtopush.backgroundColor =="#CD8D7A"){
+                  eventtopush.title = slot.module.libelle + " (Eval)"
                 }
               }
               if(this.events[this.events.length-1]?.backgroundColor!="#CD8D7A" && eventtopush.backgroundColor!="#CD8D7A") {
@@ -110,6 +135,7 @@ export class TimetableComponent implements OnInit {
                 }
               }
               this.events.push(eventtopush);
+              i++;
             });
 
             console.log(this.events[this.events.length-1].start.split("T")[1])
@@ -170,6 +196,7 @@ export class TimetableComponent implements OnInit {
     content.style.borderRadius = '5px';
     content.style.padding = '5px';
     content.style.width = '100%';
+    content.style.height = '100%';
 
     return { domNodes: [content] };
   }
@@ -180,6 +207,11 @@ export class TimetableComponent implements OnInit {
       const dateB = new Date(b.day);
       return dateA.getTime() - dateB.getTime();
     });
+  }
+
+  filterSessionsByModule(id :number) {
+    this.filteredSessions = [];
+      this.filteredSessions = this.sessions.filter(session => session.module.id === id);
   }
 
 

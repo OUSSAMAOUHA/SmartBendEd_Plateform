@@ -313,7 +313,7 @@ public class TimeTableGeneratorController {
                         }
                         inc++;
                     }
-                    if (d>=ddd){
+                    if (d>ddd){
                         timeSlotClasse.setColor("#CD8D7A");
                     }
 

@@ -98,7 +98,7 @@ public class IModuleServiceImpl implements IModuleService {
 
     @Override
     public List<Module> getModuleByEnseignant(Enseignant enseignant) {
-        return moduleRepository.getModulesByEnseignant(enseignant);
+        return moduleRepository.getModulesByEnseignant2(enseignant);
     }
 
     private TimeSlotClasseRepository timeSlotClasseRepository;

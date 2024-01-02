@@ -17,7 +17,15 @@ public class TimeTableConstraintProvider implements ConstraintProvider {
                 salleConflict(constraintFactory),
                 teacherConflict(constraintFactory),
                 studentGroupConflict(constraintFactory),
+                adjacentModule(constraintFactory),
+
                 // Soft constraints are only implemented in the optaplanner-quickstarts code
+
+                teacherSalleStability(constraintFactory),
+                teacherTimeEfficiency(constraintFactory),
+
+
+
         };
     }
 
@@ -88,21 +96,24 @@ public class TimeTableConstraintProvider implements ConstraintProvider {
                 .asConstraint("Teacher time efficiency");
     }
 
-    Constraint studentGroupSubjectVariety(ConstraintFactory constraintFactory) {
-        // A student group dislikes sequential modules on the same subject.
+    Constraint adjacentModule(ConstraintFactory constraintFactory) {
         return constraintFactory
                 .forEach(Module.class)
                 .join(Module.class,
-                        Joiners.equal(Module::getSubject),
-                        Joiners.equal(Module::getStudentGroup),
-                        Joiners.equal((module) -> module.getTimeslot().getDayOfWeek()))
+                        Joiners.equal(Module::getLibelle),
+                        Joiners.equal((module) -> module.getTimeslot().getDayOfWeek()),
+                        Joiners.equal((module) -> module.getTimeslot().getEndTime()))
                 .filter((module1, module2) -> {
                     Duration between = Duration.between(module1.getTimeslot().getEndTime(),
                             module2.getTimeslot().getStartTime());
-                    return !between.isNegative() && between.compareTo(Duration.ofMinutes(30)) <= 0;
+                    return !between.isNegative() && between.compareTo(Duration.ofMinutes(5)) <= 0;
                 })
-                .penalize(HardSoftScore.ONE_SOFT)
-                .asConstraint("Student group subject variety");
+                .reward(HardSoftScore.ONE_HARD)
+                .asConstraint("Adjacent module");
     }
+
+
+
+
 
 }

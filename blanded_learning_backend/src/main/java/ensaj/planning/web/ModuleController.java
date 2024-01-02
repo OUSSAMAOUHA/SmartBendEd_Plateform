@@ -77,7 +77,7 @@ public class ModuleController {
         if (module.getVolumeHoraireOnsite() == 0) {
             module.setMode("Remote");
         } else if (module.getVolumeHoraireOnRemote() == 0) {
-            module.setMode("On Site");
+            module.setMode("On site");
         } else {
             module.setMode("Hybride");
         }
@@ -128,7 +128,7 @@ public class ModuleController {
             if (existingModule.getVolumeHoraireOnsite() == 0) {
                 existingModule.setMode("Remote");
             } else if (existingModule.getVolumeHoraireOnRemote() == 0) {
-                existingModule.setMode("On Site");
+                existingModule.setMode("On site");
             } else {
                 existingModule.setMode("Hybride");
             }

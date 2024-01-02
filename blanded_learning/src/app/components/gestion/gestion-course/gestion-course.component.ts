@@ -173,14 +173,10 @@ export class GestionModuleComponent implements OnInit {
   }
 
   affect(form: NgForm) {
+    console.log(form.value)
     // You can also access the form object if needed
-    let affect:AffectationModuleGroupeTeacher = new AffectationModuleGroupeTeacher();
-    affect.enseignant = form.value.prof;
-    affect.module = form.value.module;
-    affect.groupe = form.value.groupe;
-    console.log(affect)
-    let moduleeee = form.value.module;
-    form.value.module!.enseignant = form.value.prof
+    let moduleeee:Module = form.value.module;
+    form.value.module.enseignant = form.value.prof
     console.log(moduleeee)
     this.moduleService.saveModule(moduleeee).subscribe(data =>{
       console.log(data)

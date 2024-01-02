@@ -69,6 +69,7 @@ export class TimetableProfComponent implements OnInit {
             this.timeSlot = timeSlotData;
             console.log(this.timeSlot);
 
+            let i: number = 0;
             this.events = []; // Clear events array before populating it with new data
             // Map timeSlot data into FullCalendar events
             this.timeSlot.forEach(slot => {
@@ -84,16 +85,26 @@ export class TimetableProfComponent implements OnInit {
                 },
               };
               if (eventtopush.backgroundColor == null){
-                if (slot.module.mode == 'On Site'){
+                if (slot.module.mode == 'On site') {
+                  eventtopush.title = slot.module.libelle + " (On site)"
                   eventtopush.backgroundColor = "#8EACCD"
-                }else if(slot.module.mode == 'Hybride'){
-                  eventtopush.backgroundColor = "#D7E5CA"
-                }
-                else if(slot.module.mode == 'Remote'){
+                } else if (slot.module.mode == 'Hybride') {
+                  if(i%2 == 1){
+                    eventtopush.title = slot.module.libelle + " (On site)"
+                    eventtopush.backgroundColor = "#8EACCD"
+                  }else{
+                    eventtopush.title = slot.module.libelle + " (On Remote)"
+                    delete eventtopush.extendedProps.location;
+                    eventtopush.backgroundColor = "#F6ECA9"
+                  }
+                } else if (slot.module.mode == 'Remote') {
+                  eventtopush.title = slot.module.libelle + " (On Remote)"
+                  delete eventtopush.extendedProps.location;
                   eventtopush.backgroundColor = "#F6ECA9"
                 }
               }
               this.events.push(eventtopush);
+              i++;
             });
 
             // After populating events, update the calendarOptions

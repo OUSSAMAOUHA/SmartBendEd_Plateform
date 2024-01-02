@@ -156,19 +156,19 @@
               <!-- Add more class options as needed -->
             </select>
         modules:
-        <select class="form-control select" ngModel name="module">
+        <select class="form-control select" [(ngModel)]="form.value.module" name="module">
           <option value="" disabled selected>Choose a module</option>
           <option *ngFor="let module of modulles" [ngValue]="module">{{ module.libelle }}</option>
         </select>
 
         teacher:
-        <select class="form-control select" ngModel name = "prof">
+        <select class="form-control select" [(ngModel)]="form.value.prof" name = "prof">
           <option value="" disabled selected>Choose a proffessor</option>
           <option *ngFor="let prof of profs" [ngValue]="prof">{{ prof.nom  }} {{prof.prenom}}</option>
           <!-- Add more class options as needed -->
         </select>
         group:
-        <select class="form-control select" ngModel name = "groupe">
+        <select class="form-control select" [(ngModel)]="form.value.groupe" name = "groupe">
           <option value="" disabled selected>Choose a group</option>
           <option *ngFor="let groupe of groupes" [ngValue]="groupe">{{ groupe.libelle}}</option>
           <!-- Add more class options as needed -->
