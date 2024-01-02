@@ -5,7 +5,7 @@ services:
     restart: always
     ports:
       - "8082:8082"
-    image: rmakaoui/mybackend:4.0  # Update this line with the correct image name and tag
+    image: rmakaoui/mybackend:6.0  # Update this line with the correct image name and tag
     environment:
       - MYSQL_HOST=mysql
       - MYSQL_USER=root
@@ -26,10 +26,27 @@ services:
       MYSQL_ROOT_PASSWORD: root
     networks:
       - app-network
+    volumes:
+      - mysql:/var/lib/mysql
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin:latest
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+      - PMA_USER=root
+      - PMA_PASSWORD=root
+    ports:
+      - "8081:80"
+    depends_on:
+      - mysql
+    networks:
+      - app-network
 
   blanded_learning_frontend:
     container_name: blanded_learning_frontend
-    image: rmakaoui/myfrontend:10.0  # Update this line with the correct image name and tag
+    image: rmakaoui/myfrontend:12.0  # Update this line with the correct image name and tag
     ports:
       - 4200:80
     depends_on:
