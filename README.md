@@ -301,13 +301,13 @@ ture and equipment, and expresses a preference for a hybrid learning
 mode.
 
 
-![admin](img/sceenAdmin.png)
+![admin](img/screenAdmin.png)
 Figure 2: Interface (Admin) for different managements
 
 Consequently, the generated program will account for these constraints
 and preferences, offering a diverse and suitable plan for their academic
 journey.
-![planning](img/planning.png)
+![planning](img/planningNew.png)
 Figure 3: A proposed scheduling program learning for a student
 
 # Contributing
