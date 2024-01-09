@@ -310,6 +310,13 @@ journey.
 ![planning](img/planningNew.png)
 Figure 3: A proposed scheduling program learning for a student
 
+
+# Video Demonstration
+
+Click the link below to watch a demonstration video:
+
+[![Watch the video](https://www.youtube.com/watch?v=AgaFrUZxM14/0.jpg)](https://www.youtube.com/watch?v=AgaFrUZxM14)
+
 # Contributing
 
 We welcome contributions from everyone, and we appreciate your help to make this project even better! If you would like to contribute, please follow these guidelines:
