@@ -315,7 +315,15 @@ Figure 3: A proposed scheduling program learning for a student
 
 Click the link below to watch a demonstration video:
 
-[![Watch the video](https://www.youtube.com/watch?v=AgaFrUZxM14/0.jpg)](https://www.youtube.com/watch?v=AgaFrUZxM14)
+
+https://github.com/OUSSAMAOUHA/SmartBendEd_Plateform/assets/96892805/52db9341-e7e6-49ed-9984-da43071858ea
+
+
+https://github.com/OUSSAMAOUHA/SmartBendEd_Plateform/assets/96892805/0adcdd4e-e6b1-4888-882e-44dc8ecdcf62
+
+
+
+
 
 # Contributing
 
@@ -323,6 +331,8 @@ We welcome contributions from everyone, and we appreciate your help to make this
 
 ## Contributors
 
-- Reda Makaoui ([GitHub]([https://github.com/redamakaoui](https://github.com/rmakaoui)))
-- Refki Elhadi ([GitHub]([https://github.com/refkielhadi](https://github.com/edwinref)https://github.com/edwinref))
-- Oussama Ouhayou ([GitHub]([https://github.com/oussamaouhayou](https://github.com/OUSSAMAOUHA)))
+- Mohamed Lachgar ([Researchgate](https://www.researchgate.net/profile/Mohamed-Lachgar))
+- Driss Laanaoui ([Researchgate](https://www.researchgate.net/profile/My-Driss-Laanaoui-2))
+- Reda Makaoui ([GitHub](https://github.com/rmakaoui))
+- Refki Elhadi ([GitHub](https://github.com/edwinref))
+- Oussama Ouhayou ([GitHub](https://github.com/OUSSAMAOUHA))
