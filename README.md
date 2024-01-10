@@ -15,8 +15,9 @@ This article introduces our user-friendly platform for blended learning, aiming 
 - [Usage](#usage)
 - [Folder Structure](#folder-structure)
 - [Dependencies](#dependencies)
+- [Video Demonstration](#Video-Demonstration)
 - [Contributing](#contributing)
-- [License](#license)
+
 
 ## Overview
 
