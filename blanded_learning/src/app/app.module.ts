@@ -57,6 +57,7 @@ import {FullCalendarModule} from "@fullcalendar/angular";
 import { TimetableProfComponent } from './components/timetable-prof/timetable-prof.component';
 import { ManipulationComponent } from './components/manipulation/manipulation.component';
 import {NgxSpinnerModule} from "ngx-spinner";
+import { TimetableAdminComponent } from './components/timetable-admin/timetable-admin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -103,7 +104,8 @@ import {NgxSpinnerModule} from "ngx-spinner";
     EditGroupsComponent,
     AddGroupComponent,
     TimetableProfComponent,
-    ManipulationComponent
+    ManipulationComponent,
+    TimetableAdminComponent
   ],
   imports: [
     BrowserModule,

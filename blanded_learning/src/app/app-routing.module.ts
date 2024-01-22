@@ -34,6 +34,7 @@ import {EditGroupsComponent} from "./components/edit/edit-groups/edit-groups.com
 import {AddGroupComponent} from "./components/add/add-group/add-group.component";
 import {TimetableProfComponent} from "./components/timetable-prof/timetable-prof.component";
 import {ManipulationComponent} from "./components/manipulation/manipulation.component";
+import {TimetableAdminComponent} from "./components/timetable-admin/timetable-admin.component";
 
 const routes: Routes = [
   { path :'' , component: HomeComponent},
@@ -52,6 +53,7 @@ const routes: Routes = [
     { path :'emploitemps' , component: TimetableComponent},
   { path :'emploitemps/prof' , component: TimetableProfComponent},
   { path :'manip' , component: ManipulationComponent},
+  { path :'timeadm' , component: TimetableAdminComponent},
     {path:'profs/edit',component:EditProfComponent},
   {path:'etud/edit',component:EditStudentComponent},
   {path:'criteria',component:GestionCriteriaComponent},

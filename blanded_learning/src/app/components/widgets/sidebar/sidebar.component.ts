@@ -64,6 +64,11 @@ export class SidebarComponent implements OnInit{
       title: "Manipulation",
       icon: "../assets/img/icons/icons8-study-48.png"
     },
+    {
+      link: "/timeadm",
+      title: "Timetables",
+      icon: "../assets/img/icons/icons8-study-48.png"
+    },
 
 
 

@@ -1,18 +1,18 @@
 
-  <app-page-header
-    [link]="'emploitemps'"
-    [prev]="'Home'"
-    [current]="'Time Table'"
-  ></app-page-header>
-  <style>
-    .color-shape {
-      width: 20px;
-      height: 20px;
-      display: inline-block;
-      margin-right: 5px;
-      border-radius: 3px; /* You can use '50%' for circles */
-      }
-      </style>
+<app-page-header
+  [link]="'timetables'"
+  [prev]="'Home'"
+  [current]="'Time Tables'"
+></app-page-header>
+<style>
+  .color-shape {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: 5px;
+    border-radius: 3px; /* You can use '50%' for circles */
+  }
+  </style>
 
 <div class="row">
   <div class="col-sm-12">
@@ -23,20 +23,30 @@
           </div>
         </div>
         <div>
+          <div class="row">
+                <div class="col-12 col-sm-4">
+                  <div class="form-group local-forms">
+                    <label>Major<span class="login-danger">*</span></label>
+                    <select class="form-control" (change)="fetchClass(filiereSelect.value)" #filiereSelect>
+                      <option value="" disabled selected>Select a major</option>
+                      <option *ngFor="let filiere of filieres" [value]="filiere.id">{{ filiere.libelle }}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-4">
+                  <div class="form-group local-forms">
+                    <label>Grade (Classe) <span class="login-danger">*</span></label>
+                    <select class="form-control select" formControlName="classe" (change)="getTimes($event)" [(ngModel)]="selectedClasseId">
+                      <option value="" disabled selected>Choose a grade</option>
+                      <option *ngFor="let classe of Classes" [value]="classe.id">{{ classe.libelle }}</option>
+                      <!-- Add more class options as needed -->
+                    </select>
+                  </div>
+                </div>
+          </div>
 
-          <h3>You are on:</h3>
-          <table style="width: 100%">
-            <tr>
-            <td><h5> Major: <span style="color: #0a58ca">{{etud.classe.filiere.libelle}}</span> </h5></td>
-            <td><h5> Grade: <span style="color: #0a58ca">{{etud.classe.libelle}}</span> </h5></td>
-            <td><h5> Group: <span style="color: #0a58ca">{{etud.groupe.libelle}}</span> </h5></td>
-              <td><h5> Semestre: <span style="color: #0a58ca">{{timeSlot[0].module.semestre}}</span> </h5></td>
-            </tr>
-          </table>
 
 
-
-          <br>This is your planning :
           <table style="width: 100%">
             <tr>
               <th>On site</th>
@@ -53,7 +63,7 @@
               </th>
             </tr>
             <!-- Add the rest of your table content here -->
-            </table>
+          </table>
 
           <full-calendar [options]="calendarOptions"></full-calendar>
         </div>

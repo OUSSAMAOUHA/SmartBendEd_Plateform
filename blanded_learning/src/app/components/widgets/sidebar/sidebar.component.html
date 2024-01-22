@@ -1,12 +1,8 @@
-<div class="sidebar invisible-background" id="sidebar">
-  <img src="../assets/img/logo.png" alt="Your Image" class="sidebar-image">
+<div class="sidebar" id="sidebar">
 
   <div class="sidebar-inner slimscroll">
     <div id="sidebar-menu" class="sidebar-menu">
       <ul>
-        <li class="menu-title">
-          <span> Menu</span>
-        </li>
         <li
           class="submenu"
           *ngFor="let item of sidebarItems; let i = index"
@@ -14,13 +10,11 @@
           [ngClass]="active == i ? 'active' : ''"
         >
           <a [routerLink]="item.link">
-            <img [src]="item.icon" alt="Custom Icon" width="20" height="20">
-            <span [ngClass]="active == i ? 'active-text' : ''">{{ item.title }}</span>
+            <i [class]="item.icon"></i>
+            <span>{{ item.title }}</span>
             <span class="menu-arrow"></span>
           </a>
         </li>
-
-
       </ul>
     </div>
   </div>

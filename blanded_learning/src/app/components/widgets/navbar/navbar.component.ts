@@ -21,22 +21,23 @@ ngOnInit() {
   // Use the stored values as needed
 }
 
-handleLogout(){
-  this.cookieService.delete('role');
+  handleLogout() {
+    this.cookieService.delete('role');
 
-  this.authService.logout(this.userId).subscribe(response => {
-        this.authService.loggedIn = false;
-          this.authService.isAdmin = false;
-          this.authService.isProf = false;
-          this.authService.name = "";
-          this.authService.token = "";
-          this.authService.id = 0;
-          // refresh page
-          // vhange route 
-          this.router.navigateByUrl('/home');
-          window.location.reload();
-      }
-      )
-      
-}
+    this.authService.logout(this.userId).subscribe(response => {
+      this.authService.loggedIn = false;
+      this.authService.isAdmin = false;
+      this.authService.isProf = false;
+      this.authService.name = "";
+      this.authService.token = "";
+      this.authService.id = 0;
+
+      // Change route to '/'
+      this.router.navigateByUrl('/').then(() => {
+        // Reload the page after navigation is complete
+        window.location.reload();
+      });
+    });
+  }
+
 }

@@ -1,29 +1,3 @@
 .sidebar {
-  background-color: #edf4ff; /* Set a background color */
-  border: 1px solid #ccc; /* Add a border */
-  border-radius: 30px; /* Round the corners */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a box shadow for a card effect */
-  margin-left: 20px; /* Add a left margin */
-  margin-bottom: 20px; /* Add a left margin */
-  margin-top: -40px; /* Add a left margin */
-}
-
-.sidebar-inner.slimscroll {
-}
-
-#sidebar-menu {
-}
-
-.sidebar-image {
-  width: 50%; /* Adjust the width as needed */
-  max-height: 100px; /* Adjust the maximum height as needed */
-  display: block; /* Center the image horizontally */
-  margin: 0 auto; /* Center the image horizontally */
-  margin-bottom: 20px; /* Add a margin below the image */
-  margin-top: 15px;
-}
-
-#sidebar .submenu.active {
-  background-color: blue;
-  color: white;
+  overflow: auto; /* or overflow-y: scroll;*/
 }
