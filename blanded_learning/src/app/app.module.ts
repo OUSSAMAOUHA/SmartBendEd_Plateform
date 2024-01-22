@@ -58,6 +58,7 @@ import { TimetableProfComponent } from './components/timetable-prof/timetable-pr
 import { ManipulationComponent } from './components/manipulation/manipulation.component';
 import {NgxSpinnerModule} from "ngx-spinner";
 import { TimetableAdminComponent } from './components/timetable-admin/timetable-admin.component';
+import { AffectModelComponent } from './components/add/affect-model/affect-model.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -105,7 +106,8 @@ import { TimetableAdminComponent } from './components/timetable-admin/timetable-
     AddGroupComponent,
     TimetableProfComponent,
     ManipulationComponent,
-    TimetableAdminComponent
+    TimetableAdminComponent,
+    AffectModelComponent
   ],
   imports: [
     BrowserModule,

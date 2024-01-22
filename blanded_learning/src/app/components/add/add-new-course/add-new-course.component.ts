@@ -104,9 +104,10 @@ export class AddNewModuleComponent implements OnInit {
 
       // Find the corresponding class and filiere objects
       const filiere = this.filiere.find((fi) => fi.id === selectedFiliereId);
-
-      if (filiere) {
+      const classe = this.classe.find((fi) => fi.id === selectedClasseId);
+      if (filiere && classe) {
         newModule.filiere = filiere;
+        newModule.classe = classe;
 
         // Create a Classe object with the selected ID
         console.log("class", newModule.classe.id);

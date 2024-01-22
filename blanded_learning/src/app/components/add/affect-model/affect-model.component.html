@@ -1,0 +1,76 @@
+<app-page-header
+  [link]="'etudiant'"
+  [prev]="'Course'"
+  [current]="'affect course'"
+></app-page-header>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card comman-shadow">
+      <div class="card-body">
+        <form [formGroup]="newProfFormGroup" (ngSubmit)="affect()">
+          <div class="row">
+
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Major<span class="login-danger">*</span></label>
+                <select class="form-control" (change)="fetchClass(filiereSelect.value)" #filiereSelect>
+                  <option value="" disabled selected>Select a major</option>
+                  <option *ngFor="let filiere of filieres" [value]="filiere.id">{{ filiere.libelle }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Grade (Classe) <span class="login-danger">*</span></label>
+                <select class="form-control select" formControlName="classe" (change)="loadModulles($event);getGroupesByClasse($event)">
+                  <option value="" disabled selected>Choose a grade</option>
+                  <option *ngFor="let classe of Classes" [value]="classe.id">{{ classe.libelle }}</option>
+                  <!-- Add more class options as needed -->
+                </select>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Groupe<span class="login-danger">*</span></label>
+                <select class="form-control select" formControlName="groupe" required>
+                  <option value="" disabled selected>Choose a groupe of this classe</option>
+                  <option *ngFor="let groupe of groupes" [value]="groupe.id">{{ groupe.libelle }}</option>
+                  <!-- Add more group options as needed -->
+                </select>
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Module<span class="login-danger">*</span></label>
+                <select class="form-control select" formControlName="module" required>
+                  <option value="" disabled selected>Choose a module</option>
+                  <option *ngFor="let module of modulles" [ngValue]="module">{{ module.libelle }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-12 col-sm-4">
+              <div class="form-group local-forms">
+                <label>Teacher<span class="login-danger">*</span></label>
+                <select class="form-control select" formControlName="prof" required>
+                  <option value="" disabled selected>Choose a proffessor</option>
+                  <option *ngFor="let prof of profs" [ngValue]="prof">{{ prof.nom  }} {{prof.prenom}}</option>
+                </select>
+              </div>
+            </div>
+
+            <div
+              class="col-12 d-flex align-items-center justify-content-center"
+            >
+              <div class="student-submit">
+                <button type="submit" class="btn btn-primary">Confirm</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
