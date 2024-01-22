@@ -37,7 +37,7 @@ services:
     restart: always
     ports:
       - "8082:8082"
-    image: rmakaoui/mybackend:7.0  
+    image: rmakaoui/mybackend:11.0  
     environment:
       - MYSQL_HOST=mysql
       - MYSQL_USER=root
@@ -78,7 +78,7 @@ services:
 
   blanded_learning_frontend:
     container_name: blanded_learning_frontend
-    image: rmakaoui/myfrontend:14.0  
+    image: rmakaoui/myfrontend:20.0  
     ports:
       - 4200:80
     depends_on:
