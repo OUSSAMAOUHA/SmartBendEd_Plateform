@@ -83,6 +83,7 @@ export class TimetableComponent implements OnInit {
               let eventtopush = {
                 title: slot.module.libelle,
                 start: slot.day,
+                end: slot.day.split("T")[0]+ 'T' + slot.endTime,
                 backgroundColor: slot.color,
                 textColor: 'black',
                 borderColor: 'black',
@@ -134,6 +135,12 @@ export class TimetableComponent implements OnInit {
                   eventtopush.backgroundColor = this.events[this.events.length - 1]?.backgroundColor;
                 }
               }
+              if(eventtopush.backgroundColor =='#8EACCD'){
+                eventtopush.title = slot.module.libelle + " (On site)"
+              }else if (eventtopush.backgroundColor =='#F6ECA9'){
+                eventtopush.title = slot.module.libelle + " (On Remote)"
+
+              }
               this.events.push(eventtopush);
               i++;
             });
@@ -176,7 +183,7 @@ export class TimetableComponent implements OnInit {
 
     // Display title and start time
     content.innerHTML = `<b>${arg.event.title}</b><br>${arg.event.start!.toLocaleTimeString()}`;
-
+    content.innerHTML += `<b> -- </b> ${arg.event.end!.toLocaleTimeString()}`;
     // Check for additional attributes and display them
     const additionalProps = arg.event.extendedProps;
     if (additionalProps) {

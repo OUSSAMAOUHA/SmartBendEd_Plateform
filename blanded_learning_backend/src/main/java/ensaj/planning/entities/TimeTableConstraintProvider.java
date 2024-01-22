@@ -6,6 +6,7 @@ import org.optaplanner.core.api.score.stream.ConstraintFactory;
 import org.optaplanner.core.api.score.stream.ConstraintProvider;
 import org.optaplanner.core.api.score.stream.Joiners;
 
+import java.time.DayOfWeek;
 import java.time.Duration;
 
 public class TimeTableConstraintProvider implements ConstraintProvider {
@@ -17,12 +18,13 @@ public class TimeTableConstraintProvider implements ConstraintProvider {
                 salleConflict(constraintFactory),
                 teacherConflict(constraintFactory),
                 studentGroupConflict(constraintFactory),
-                adjacentModule(constraintFactory),
+                //adjacentModule(constraintFactory),
 
                 // Soft constraints are only implemented in the optaplanner-quickstarts code
 
                 teacherSalleStability(constraintFactory),
                 teacherTimeEfficiency(constraintFactory),
+                studentTimeDistribution(constraintFactory),
 
 
 
@@ -96,20 +98,22 @@ public class TimeTableConstraintProvider implements ConstraintProvider {
                 .asConstraint("Teacher time efficiency");
     }
 
-    Constraint adjacentModule(ConstraintFactory constraintFactory) {
+    private Constraint studentTimeDistribution(ConstraintFactory constraintFactory) {
+        // A student prefers a more distributed timetable over the week.
+
+        // For each student...
         return constraintFactory
                 .forEach(Module.class)
                 .join(Module.class,
-                        Joiners.equal(Module::getLibelle),
-                        Joiners.equal((module) -> module.getTimeslot().getDayOfWeek()),
-                        Joiners.equal((module) -> module.getTimeslot().getEndTime()))
+                        Joiners.equal(Module::getClasse),
+                        Joiners.lessThan(Module::getId))
                 .filter((module1, module2) -> {
-                    Duration between = Duration.between(module1.getTimeslot().getEndTime(),
-                            module2.getTimeslot().getStartTime());
-                    return !between.isNegative() && between.compareTo(Duration.ofMinutes(5)) <= 0;
+                    DayOfWeek day1 = module1.getTimeslot().getDayOfWeek();
+                    DayOfWeek day2 = module2.getTimeslot().getDayOfWeek();
+                    return !day1.equals(day2);
                 })
-                .reward(HardSoftScore.ONE_HARD)
-                .asConstraint("Adjacent module");
+                .reward(HardSoftScore.ONE_SOFT)
+                .asConstraint("Student time distribution");
     }
 
 

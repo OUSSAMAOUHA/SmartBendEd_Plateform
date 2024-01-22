@@ -114,6 +114,7 @@ export class TimetableAdminComponent {
             let eventtopush = {
               title: slot.module.libelle,
               start: slot.day,
+              end: slot.day.split("T")[0]+ 'T' + slot.endTime,
               backgroundColor: slot.color,
               textColor: 'black',
               borderColor: 'black',
@@ -180,6 +181,7 @@ export class TimetableAdminComponent {
 
     // Display title and start time
     content.innerHTML = `<b>${arg.event.title}</b><br>${arg.event.start!.toLocaleTimeString()}`;
+    content.innerHTML += `<b> -- </b> ${arg.event.end!.toLocaleTimeString()}`;
 
     // Check for additional attributes and display them
     const additionalProps = arg.event.extendedProps;
