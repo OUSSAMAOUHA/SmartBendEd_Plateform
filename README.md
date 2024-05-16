@@ -24,7 +24,7 @@ This article introduces our user-friendly platform for blended learning, aiming 
 The project aims to create a user-friendly blended learning platform that prioritizes efficient scheduling and planning. It seeks to empower both teachers and students by considering their constraints and preferences. This platform will not only optimize resource allocation but also enhance student engagement through adaptable learning schedules. It aspires to provide educators with tools to input their constraints and teaching modes while offering realtime updates and data-driven insights for administrators. Ultimately, the project’s goal is to improve learning outcomes by making blended learning a more organized, accessible, and effective educational approach.
 
 ## Software architecture
-![archi](img/archiNew.png)
+![archi](img/newArchi.png)
  The software architecture follows a decoupled approach, employing Spring Boot for backend infrastructure with dedicated controllers (StudentController, ProfessorController, MajorController...) managing HTTP requests between the Angular frontend and MySQL database. Angular's frontend comprises components like Add, Dashboard, Edit, etc., driving user interactions and sending requests to Spring Boot. Angular services (e.g., student.service, professor.service,...) correspond to backend services handling business logic for entities like students, professors, etc., interacting with repositories (StudentRepository, ProfessorRepository...) for database operations. This approach ensures efficient communication, scalability, and separation of concerns. Additionally, the backend includes the Sessions Mode Algorithm Controller for student mode allocation and services (Sessions Service, Timeslot Service) managing session allocation, time slots, and course coordination. Furthermore, an AI constraints solver based on Oplaplanner enhances the architecture, comprising three vital services: TimeTableConstraintProvider, TimeTableEasyScoreCalculator, and TimeTableSolverService, optimizing scheduling solutions based on constraints and preferences while enabling scalable development and intelligent scheduling mechanisms.
  These components ensure efficient communication between frontend and backend, enabling scalable development and deployment. They maintain a clear separation of concerns, facilitate the management and expansion of the web application’s functionalities, and introduce intelligent scheduling mechanisms into the architecture.
 
@@ -328,9 +328,11 @@ https://github.com/OUSSAMAOUHA/SmartBendEd_Plateform/assets/96892805/52db9341-e7
 We welcome contributions from everyone, and we appreciate your help to make this project even better! If you would like to contribute, please follow these guidelines:
 
 ## Contributors
-
+- Oussama Ouhayou ([GitHub](https://github.com/OUSSAMAOUHA))
+- Refki Elhadi ([GitHub](https://github.com/edwinref))
+- Reda Makaoui ([GitHub](https://github.com/rmakaoui))
 - Mohamed Lachgar ([Researchgate](https://www.researchgate.net/profile/Mohamed-Lachgar))
 - Driss Laanaoui ([Researchgate](https://www.researchgate.net/profile/My-Driss-Laanaoui-2))
-- Reda Makaoui ([GitHub](https://github.com/rmakaoui))
-- Refki Elhadi ([GitHub](https://github.com/edwinref))
-- Oussama Ouhayou ([GitHub](https://github.com/OUSSAMAOUHA))
+
+
+
